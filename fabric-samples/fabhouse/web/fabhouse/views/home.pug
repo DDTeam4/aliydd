@@ -1,0 +1,26 @@
+extends ../node_modules/jade-bootstrap/_bootstrap
+append styles
+        // Custom styles for this template
+        link(href='/stylesheets/signup.css', rel='stylesheet')
+        script(src='/javascripts/jquery.js', type='text/javascript')
+        script(src='/javascripts/signup.js', type='text/javascript') 
+block body
+        .container
+                form.form-signin
+                        h2.form-signin-heading 用户注册
+                        label.sr-only(for='idcard') IDCard
+                        input#inputIDCard.form-control(type='text', placeholder='身份证号码', required='', autofocus='')
+                        label.sr-only(for='name') Name
+                        input#inputName.form-control(type='text', placeholder='姓名', required='')
+                        label.sr-only(for='phone') Phone 
+                        input#inputPhone.form-control(type='text', placeholder='电话号码', required='')                       
+                        label.sr-only(for='company') Company
+                        input#inputCompany.form-control(type='text', placeholder='公司', required='')
+                        label.sr-only(for='credit') Credit
+                        input#inputCredit.form-control(type='text', placeholder='信用分', required='')
+                        .checkbox
+                                label
+                                        input(type='checkbox', value='remember-me')
+                                        |  Remember me
+                        button.btn.btn-lg.btn-primary.btn-block(type='submit',onclick='signup()') 注册
+
