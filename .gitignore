@@ -1,5 +1,8 @@
 balance-transfer
+<<<<<<< HEAD
 basic-network
 bin
+=======
+>>>>>>> 979701268cfbe444bda3163ffd9d1a0e92739e70
 chaincode-docker-devmode
 Jenkinsfile
