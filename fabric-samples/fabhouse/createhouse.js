@@ -67,9 +67,10 @@ exports.createHouse = function (args = ['1001', '100', 'unlet', 'Aaravb', 'Aarav
 				//targets: let default to the peer assigned to the client
 				chaincodeId: 'fabhouse',
 				fcn: 'createHouse',
-				args: args,
-				chainId: 'mychannel',
-				txId: tx_id
+				//args: args,
+				args:['1001', '100', 'unrent', 'Amy', 'Amy']
+			//	chainId: 'mychannel',
+			//	txId: tx_id
 			};
 
 			// send the transaction proposal to the peers

@@ -27,8 +27,8 @@ var store_path = path.join(__dirname, 'hfc-key-store');
 console.log('Store path:' + store_path);
 var tx_id = null;
 
-exports.queryAllHouse = function (args = ['']) {
-	return new Promise(function (resolve) {
+//exports.queryAllHouse = function (args = ['']) {
+//	return new Promise(function (resolve) {
 		// create the key value store as defined in the fabric-client/config/default.json 'key-value-store' setting
 		Fabric_Client.newDefaultKeyValueStore({
 			path: store_path
@@ -60,7 +60,8 @@ exports.queryAllHouse = function (args = ['']) {
 				//targets : --- letting this default to the peers assigned to the channel
 				chaincodeId: 'fabhouse',
 				fcn: 'queryAllHouses',
-				args: args
+				//args: args
+				args:['']
 			};
 
 			// send the query proposal to the peer
@@ -81,5 +82,5 @@ exports.queryAllHouse = function (args = ['']) {
 		}).catch((err) => {
 			console.error('Failed to query successfully :: ' + err);
 		});
-	})
-};
+	//})
+//};
