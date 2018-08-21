@@ -28,7 +28,7 @@ console.log('Store path:'+store_path);
 var tx_id = null;
 
 
-exports.queryUnrentHouses = function (args = ['']) {
+exports.queryUnrentHouses = function (args = ["unrent"]) {
 	return new Promise(function (resolve) {
 	// create the key value store as defined in the fabric-client/config/default.json 'key-value-store' setting
 	Fabric_Client.newDefaultKeyValueStore({ path: store_path
@@ -56,7 +56,7 @@ exports.queryUnrentHouses = function (args = ['']) {
 		// queryAllCars chaincode function - requires no arguments , ex: args: [''],
 		const request = {
 			//targets : --- letting this default to the peers assigned to the channel
-			chaincodeId: 'fabcar',
+			chaincodeId: 'fabhouse',
 			fcn: 'queryUnrentHouses',
 			args: args
 		};
