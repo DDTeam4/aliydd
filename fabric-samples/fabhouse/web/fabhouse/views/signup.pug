@@ -1,0 +1,39 @@
+extends ../node_modules/jade-bootstrap/_bootstrap
+append styles
+        script(src='/javascripts/jquery.js', type='text/javascript')
+        link(href='/stylesheets/signup.css', rel='stylesheet') 
+        script(src='/javascripts/signup.js', type='text/javascript')
+block body
+        .site-wrapper
+                .site-wrapper-inner
+                        .cover-container
+                                .masthead.clearfix
+                                        .inner
+                                                h3.masthead-brand FabHouse
+                                                nav
+                                                        ul.nav.masthead-nav
+                                                                li
+                                                                        a(href="/") 主页
+                                                                li.active
+                                                                        a(href="/signup") 注册
+                                                                li
+                                                                        a(href="#") 关于
+ 
+        .container
+                div.form-signin
+                        h2.form-signin-heading 用户注册
+                        input#inputIDCard(type='text',placeholder='身份证号码')
+                        input#inputName(type='text', placeholder='姓名')
+                        input#inputPhone(type='text', placeholder='电话号码')
+                        input#inputCompany(type='text', placeholder='公司')
+                        input#inputCredit(type='text', placeholder='信用分')
+                        
+                        div.form-check
+                                input.form-check-input(type='radio', name='type', id='customer', value='customer',checked)
+                                label.form-check-label(for='type') 我要租房 
+                                input.form-check-input(type='radio', name='type', id='owner', value='owner')
+                                label.form-check-label(for='type') 我是房主 
+                        button.btn.btn-lg.btn-primary.btn-block(type='submit',onclick='signup()') 注册
+                        button.btn.btn-lg.btn-primary.btn-block(type='submit',onclick='query()') 查询
+
+

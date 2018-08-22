@@ -1,17 +1,32 @@
-// this file is for home.pug, created @ 0816
+// this file is for signup.pug, created @ 0816
 
 function signup(){
     console.log('signup ...');
-    var idcard, name, phone, company, credit;
+    var idcard, name, phone, company, credit, type;
     idcard = $("#inputIDCard").val();
     name = $("#inputName").val();
     phone = $("#inputPhone").val();
     company = $("#inputCompany").val();
     credit = $("#inputCredit").val();
-    console.log(idcard+":"+name+":"+phone+":"+company+":"+credit);
-
-    $.post('/signup',{'idcard':idcard,'name':name,'phone':phone,'company':company,'credit':credit},function(data){
-          $.get('/users');});
+    type = $("input[name='type']:checked").val();
+    console.log(idcard+":"+name+":"+phone+":"+company+":"+credit+":"+type);
+    
+    if(type=='customer'){
+        console.log('to /customer'); 
+        $.post('/signupService',{'idcard':idcard,'name':name,'phone':phone,'company':company,'credit':credit},function(data){
+            console.log('post success');
+           // $.get('/customer');
+            window.location.href="/customer"; 
+            });
+    }
+    
+    else {
+         $.post('/signupService',{'idcard':idcard,'name':name,'phone':phone,'company':company,'credit':credit},function(data){
+            //$.get('/owner');
+            window.location.href="/owner"; 
+            });
+       
+    }
 }
 
 
