@@ -32,15 +32,8 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	//"strconv"
-
 	"github.com/hyperledger/fabric/core/chaincode/shim"
 	sc "github.com/hyperledger/fabric/protos/peer"
-
-	//"strconv"
-	//"strings"
-	//"time"
-
 )
 
 // Define the Smart Contract structure
@@ -107,6 +100,10 @@ func (s *SmartContract) Invoke(APIstub shim.ChaincodeStubInterface) sc.Response 
 		return s.changeToRented(APIstub, args)
 	}else if function == "changeToUnrent" {
 		return s.changeToUnrent(APIstub, args)
+	}else if function == "queryByOwner" {
+		return s.queryByOwner(APIstub, args)
+	}else if function == "queryByUser" {
+		return s.queryByUser(APIstub, args)
 	}
 
 	return shim.Error("Invalid Smart Contract function name.")
@@ -264,6 +261,51 @@ func (s *SmartContract) queryUnrentHouses(APIstub shim.ChaincodeStubInterface, a
 	status := args[0]
 	
 	queryString := fmt.Sprintf("{\"selector\":{\"status\":\"%s\"}}", status)
+	
+	resultsIterator, err := APIstub.GetQueryResult(queryString)
+ 	if err!=nil{
+    	 return shim.Error("Rich query failed 1")
+   	}
+
+  	houses,err:=getListResult(resultsIterator)
+   	if err!=nil{
+      		return shim.Error("Rich query failed 2")
+   	}
+   	return shim.Success(houses)
+
+}
+
+
+func (s *SmartContract) queryByOwner(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
+	if len(args) < 1 {
+		return shim.Error("Incorrect number of arguments. Expecting 1")
+	}
+
+	name := args[0]
+	
+	queryString := fmt.Sprintf("{\"selector\":{\"owner\":\"%s\"}}", name)
+	
+	resultsIterator, err := APIstub.GetQueryResult(queryString)
+ 	if err!=nil{
+    	 return shim.Error("Rich query failed 1")
+   	}
+
+  	houses,err:=getListResult(resultsIterator)
+   	if err!=nil{
+      		return shim.Error("Rich query failed 2")
+   	}
+   	return shim.Success(houses)
+
+}
+
+func (s *SmartContract) queryByUser(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
+	if len(args) < 1 {
+		return shim.Error("Incorrect number of arguments. Expecting 1")
+	}
+
+	name := args[0]
+	
+	queryString := fmt.Sprintf("{\"selector\":{\"user\":\"%s\"}}", name)
 	
 	resultsIterator, err := APIstub.GetQueryResult(queryString)
  	if err!=nil{
