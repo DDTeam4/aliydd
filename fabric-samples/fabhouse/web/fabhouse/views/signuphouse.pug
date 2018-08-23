@@ -20,23 +20,16 @@ block body
                                                                 li.active
                                                                         a(href="/signup") 注册
                                                                 li
-                                                                        a(href="/signin") 登录
-                                                                li
                                                                         a(href="#") 关于
  
         .container
                 div.form-signin
-                        h2.form-signin-heading 用户注册
-                        input#inputIDCard(type='text',placeholder='身份证号码')
-                        input#inputName(type='text', placeholder='姓名')
-                        input#inputPhone(type='text', placeholder='电话号码')
-                        input#inputCompany(type='text', placeholder='公司')
-                        input#inputCredit(type='text', placeholder='信用分')
+                        h2.form-signin-heading 房屋注册
+                        input#inputID(type='text',placeholder='房屋号码')
+                        input#inputArea(type='text', placeholder='面积')
+                        input#inputStatus(type='text', placeholder='状态')
+                        input#inputOwner(type='text', placeholder='持有者')
+                        input#inputUser(type='text', placeholder='使用者')
                         
-                        div.form-check
-                                input.form-check-input(type='radio', name='type', id='customer', value='customer',checked='', style="width:35px;")
-                                label.form-check-label(for='type') 我要租房 
-                                input.form-check-input(type='radio', name='type', id='owner', value='owner' style="width:35px;")
-                                label.form-check-label(for='type') 我是房主 
                         button.btn.btn-lg.btn-primary.btn-block(type='submit',onclick='signup()') 注册
                         button.btn.btn-lg.btn-primary.btn-block(type='submit',onclick='query()') 查询

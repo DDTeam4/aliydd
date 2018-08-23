@@ -7,13 +7,16 @@ var logger = require('morgan');
 var indexRouter = require('./routes/router/index');
 var usersRouter = require('./routes/router/users');
 var signupRouter = require('./routes/router/signup');
+var signinRouter = require('./routes/router/signin');
 var customerRouter = require('./routes/router/customer');
 var ownerRouter = require('./routes/router/owner');
 
 var signupServiceRouter = require('./routes/service/signup');
+var signinServiceRouter = require('./routes/service/signin');
 var enrollServiceRouter = require('./routes/service/enrollAdmin');
 var registerServiceRouter = require('./routes/service/registerUser');
 var queryServiceRouter = require('./routes/service/queryallperson');
+var queryoneServiceRouter = require('./routes/service/queryperson');
 
 var app = express();
 
@@ -31,11 +34,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', enrollServiceRouter,registerServiceRouter,indexRouter);
 app.use('/users', usersRouter);
 app.use('/signup',signupRouter);
+app.use('/signin',signinRouter);
 app.use('/customer',customerRouter);
 app.use('/owner',ownerRouter);
 
 app.use('/signupService',signupServiceRouter);
+app.use('/signinService',signinServiceRouter);
 app.use('/queryService',queryServiceRouter);
+app.use('/queryoneService',queryoneServiceRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

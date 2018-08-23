@@ -29,8 +29,39 @@ function signup(){
     }
 }
 
+function signin(){
+    console.log('signin ...');
+    var id;
+   
+    idcard = $("#inputIDCard").val();
+    type = $("input[name='type']:checked").val();
+    console.log("The idcard is :"+idcard);
+    
+    if(type=='customer'){
+        console.log('to /customer'); 
+        $.post('/signinService',{'idcard':idcard},function(data){
+            console.log('post success');
+            //$.get('/customer');
+            window.location.href="/customer"; 
+            });
+    }
+    
+    else {
+         $.post('/signinService',{'idcard':idcard},function(data){
+           // $.get('/owner');
+            window.location.href="/owner"; 
+            });
+       
+    }
+}
+
 
 function query(){
-    console.log('query...');
-    $.get('/query');
+ /*   console.log('query...');
+     $.post('/signinService',{'idcard':idcard},function(data){
+            //$.get('/owner');
+            window.location.href="/owner"; 
+            });
+       */
+    $.get('/queryService');
 }
