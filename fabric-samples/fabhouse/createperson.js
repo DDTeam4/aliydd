@@ -29,7 +29,8 @@ var store_path = path.join(__dirname, 'hfc-key-store');
 console.log('Store path:' + store_path);
 var tx_id = null;
 
-exports.createPerson = function (args = ['0001', 'Brad', '14423455432', 'B', '10']) {
+// ['0001', 'Brad', '14423455432', 'B', '10']
+exports.createPerson = function (args = ['0001', 'Brad','123456', '14423455432', 'B', '10']) {
 	return new Promise(function (resolve) {
 		// create the key value store as defined in the fabric-client/config/default.json 'key-value-store' setting
 		Fabric_Client.newDefaultKeyValueStore({
