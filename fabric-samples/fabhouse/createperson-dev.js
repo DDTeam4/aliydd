@@ -66,7 +66,7 @@ var tx_id = null;
 				chaincodeId: 'fabhouse',
 				fcn: 'createPerson',
 				//args: args,
-				args:['0001', 'Brad','123456', '14423455432', 'B', '10'],
+				args:['0001', 'Brad', '123456', '14423455432', 'B', '10'],
 				chainId: 'mychannel',
 				txId: tx_id
 			};
