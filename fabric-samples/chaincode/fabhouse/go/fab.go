@@ -42,8 +42,9 @@ type SmartContract struct {
 
 // Define the person structure, with 5 properties.  Structure tags are used by encoding/json library
 type Person struct {
-        Idcard   string `json:"idcard"`
-        Name  string `json:"name"`
+    Idcard   string `json:"idcard"`
+    Name  string `json:"name"`
+    Password  string `json:"password"`
 	Phone  string `json:"phone"`
 	Company string `json:"company"`
 	Credit  string `json:"credit"`
@@ -51,9 +52,9 @@ type Person struct {
 
 // Define the House structure, with 4 properties.  Structure tags are used by encoding/json library
 type House struct {
-        Id  string `json:"id"`
-        Area   string `json:"area"`
-        Status  string `json:"status"`
+    Id  string `json:"id"`
+    Area   string `json:"area"`
+    Status  string `json:"status"`
 	Owner  string `json:"owner"`
 	User string `json:"user"`
 }
@@ -104,11 +105,14 @@ func (s *SmartContract) Invoke(APIstub shim.ChaincodeStubInterface) sc.Response 
 		return s.queryByOwner(APIstub, args)
 	}else if function == "queryByUser" {
 		return s.queryByUser(APIstub, args)
+	}else if function == "queryByPassword" {
+		return s.queryByPassword(APIstub, args)
 	}
 
 	return shim.Error("Invalid Smart Contract function name.")
 }
 
+//quaryperson through Idcard
 func (s *SmartContract) queryPerson(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
 
 	if len(args) != 1 {
@@ -119,6 +123,7 @@ func (s *SmartContract) queryPerson(APIstub shim.ChaincodeStubInterface, args []
 	return shim.Success(personAsBytes)
 }
 
+//quaryhouse through Id
 func (s *SmartContract) queryHouse(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
 
 	if len(args) != 1 {
@@ -135,11 +140,11 @@ func (s *SmartContract) initLedger(APIstub shim.ChaincodeStubInterface) sc.Respo
 
 func (s *SmartContract) createPerson(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
 
-	if len(args) != 5 {
-		return shim.Error("Incorrect number of arguments. Expecting 5")
+	if len(args) != 6 {
+		return shim.Error("Incorrect number of arguments. Expecting 6")
 	}
 
-	var person = Person{Idcard: args[0], Name: args[1], Phone: args[2], Company: args[3], Credit: args[4]}
+	var person = Person{Idcard: args[0], Name: args[1], Password: args[2], Phone: args[3], Company: args[4], Credit: args[5]}
 
 	personAsBytes, _ := json.Marshal(person)
 	APIstub.PutState(args[0], personAsBytes)
@@ -200,8 +205,8 @@ func (s *SmartContract) queryAllPersons(APIstub shim.ChaincodeStubInterface) sc.
 
 func (s *SmartContract) changePerson(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
 
-	if len(args) != 5 {
-		return shim.Error("Incorrect number of arguments. Expecting 5")
+	if len(args) != 6 {
+		return shim.Error("Incorrect number of arguments. Expecting 6")
 	}
 
 	personAsBytes, _ := APIstub.GetState(args[0])
@@ -209,11 +214,12 @@ func (s *SmartContract) changePerson(APIstub shim.ChaincodeStubInterface, args [
 
 	json.Unmarshal(personAsBytes, &person)
 
-        person.Idcard = args[0]
-        person.Name = args[1]
-        person.Phone = args[2]
-	person.Company = args[3]
-	person.Credit = args[4]
+    person.Idcard = args[0]
+    person.Name = args[1]
+    person.Password = args[2]
+    person.Phone = args[3]
+	person.Company = args[4]
+	person.Credit = args[5]
 
 	personAsBytes, _ = json.Marshal(person)
 	APIstub.PutState(args[0], personAsBytes)
@@ -275,7 +281,31 @@ func (s *SmartContract) queryUnrentHouses(APIstub shim.ChaincodeStubInterface, a
 
 }
 
+//quegy person through name and password
+func (s *SmartContract) queryByPassword(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
+	if len(args) < 2 {
+		return shim.Error("Incorrect number of arguments. Expecting 2")
+	}
 
+	name := args[0]
+	password := args[1]
+	
+	queryString := fmt.Sprintf("{\"selector\":{\"name\":\"%s\",\"password\":\"%s\"}}", name, password)
+	
+	resultsIterator, err := APIstub.GetQueryResult(queryString)
+ 	if err!=nil{
+    	 return shim.Error("Rich query failed 1")
+   	}
+
+  	person,err:=getListResult(resultsIterator)
+   	if err!=nil{
+      		return shim.Error("Rich query failed 2")
+   	}
+   	return shim.Success(person)
+
+}
+
+//quegy house through owner
 func (s *SmartContract) queryByOwner(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
 	if len(args) < 1 {
 		return shim.Error("Incorrect number of arguments. Expecting 1")
@@ -298,6 +328,7 @@ func (s *SmartContract) queryByOwner(APIstub shim.ChaincodeStubInterface, args [
 
 }
 
+//quegy house through user
 func (s *SmartContract) queryByUser(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
 	if len(args) < 1 {
 		return shim.Error("Incorrect number of arguments. Expecting 1")
@@ -331,9 +362,9 @@ func (s *SmartContract) changeHouse(APIstub shim.ChaincodeStubInterface, args []
 
 	json.Unmarshal(houseAsBytes, &house)
 
-        house.Id = args[0]
-        house.Area = args[1]
-        house.Status = args[2]
+    house.Id = args[0]
+    house.Area = args[1]
+    house.Status = args[2]
 	house.Owner = args[3]
 	house.User = args[4]
 
@@ -343,6 +374,7 @@ func (s *SmartContract) changeHouse(APIstub shim.ChaincodeStubInterface, args []
 	return shim.Success(nil)
 }
 
+//change house status to rented
 func (s *SmartContract) changeToRented(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
 
 	if len(args) != 2 {
@@ -362,6 +394,7 @@ func (s *SmartContract) changeToRented(APIstub shim.ChaincodeStubInterface, args
 	return shim.Success(nil)
 }
 
+//change house status to unrent
 func (s *SmartContract) changeToUnrent(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
 
 	if len(args) != 2 {
