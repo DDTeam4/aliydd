@@ -29,6 +29,7 @@ function signup(){
     }
 }
 
+
 function signin(){
     console.log('signin ...');
     var id;
@@ -39,20 +40,27 @@ function signin(){
     
     if(type=='customer'){
         console.log('to /customer'); 
-        $.post('/signinService',{'idcard':idcard},function(data){
-            console.log('post success');
-            //$.get('/customer');
-            window.location.href="/customer"; 
-            });
+
+        $.post('/queryoneService',{'idcard':idcard},
+               function(data){
+                          console.log('post success');
+                          $("body").html(data);
+               }
+       ).fail(function(jqXHR,textStatus,errorThrown){
+                   console.log("error");
+                   alert(jqXHR.responseText);
+       });
+
     }
     
     else {
-         $.post('/signinService',{'idcard':idcard},function(data){
+         $.post('/queryoneService',{'idcard':idcard},function(data){
            // $.get('/owner');
-            window.location.href="/owner"; 
+//           window.location.href="/owner"; 
             });
        
     }
+
 }
 
 
