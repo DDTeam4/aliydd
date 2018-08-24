@@ -1,64 +1,10 @@
-extends ../node_modules/jade-bootstrap/_bootstrap
-append styles
-    link(href='/stylesheets/home.css', rel='stylesheet')
+extends layout
 
-block body
-    .site-wrapper
-        .site-wrapper-inner
-            .cover-container
-                .masthead.clearfix
-                    .inner
-                        h3.masthead-brand FabHouse
-                        nav
-                            ul.nav.masthead-nav
-                                li
-                                    a(href="/") 主页
-                                li
-                                    a(href="/rent") 我要租房
-                                li.active
-                                    a(href="/lease") 我要出租
-
-                .inner.cover
-                    .panel.panel-default
-                        .panel-heading 房间
-                        .panel-body
-                            table.table
-                                tbody
-                                    tr
-                                        td 房屋状态
-                                        td 已出租
-                                    tr
-                                        td 地址
-                                        td 北苑小区1栋三单元201
-                                    tr
-                                        td 面积
-                                        td 10平方米
-                                    tr
-                                        td 卫生间
-                                        td 独卫
-                            .form-group.text-center
-                                button.changeInfo.btn.btn-default.btn-block(type='submit') 修改信息
-                                button.releaseInfo.btn.btn-default.btn-block(type='submit') 发布信息
-                                button.alternativePerson.btn.btn-default.btn-block(type='submit') 有意向租客
-                    .panel.panel-default
-                        .panel-heading 房间
-                        .panel-body
-                            table.table
-                                tbody
-                                    tr
-                                        td 房屋状态
-                                        td 未出租
-                                    tr
-                                        td 地址
-                                        td 北苑小区1栋三单元202
-                                    tr
-                                        td 面积
-                                        td 10平方米
-                                    tr
-                                        td 卫生间
-                                        td 独卫
-                            .form-group.text-center
-                                button.changeInfo.btn.btn-default.btn-block(type='submit') 修改信息
-                                button.releaseInfo.btn.btn-default.btn-block(type='submit') 发布信息
-                                button.alternativePerson.btn.btn-default.btn-block(type='submit') 有意向租客
-
+block content
+  h1 房屋列表
+  p Welcome #{result.owner}, this are your houses:
+  p="id: "+result.id
+  p="area: "+result.area
+  p="status: "+result.status
+  p="owner: "+result.owner
+  p="user: "+result.user

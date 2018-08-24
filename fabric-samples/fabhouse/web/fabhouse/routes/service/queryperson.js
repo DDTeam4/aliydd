@@ -87,6 +87,7 @@ Fabric_Client.newDefaultKeyValueStore({ path: store_path
                         }
                         else{
                             result = JSON.parse(str);
+                            console.log("The result is ",result);
                             console.log(result.name+":"+result.company+":"+result.phone+":"+result.credit+":"+result.password);
                             console.log(result.password == password);
                             if(result.password!=password){

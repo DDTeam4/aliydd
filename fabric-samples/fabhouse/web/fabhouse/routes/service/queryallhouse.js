@@ -10,7 +10,9 @@ var router = express.Router();
  * Chaincode query
  */
 
-router.get('/',function(req,res,next){
+router.post('/',function(req,res,next){
+
+
 var Fabric_Client = require('fabric-client');
 var path = require('path');
 var util = require('util');
@@ -73,7 +75,19 @@ Fabric_Client.newDefaultKeyValueStore({ path: store_path
 			console.error("error from query = ", query_responses[0]);
 		} else {
 			console.log("Response is ", query_responses[0].toString());
-		}
+				var str = query_responses[0].toString();
+                        if(str=="") {
+                            console.log("query no result.");
+                            res.status(400).json({error:"您当前没有房屋注册！"});
+                        }
+                        else{
+                            result = JSON.parse(str);
+                            console.log("The result is :",result[0].Key);  //get the result
+                            console.log(result[0].Record.id+":"+result[0].Record.area+":"+result[0].Record.status+":"+result[0].Record.owner+":"+result[0].Record.user);
+                           	console.log("redirect to lease.pug.");
+                        	res.render('lease',{result:result[0].Record});                           
+                            }
+                }
 	} else {
 		console.log("No payloads were returned from query");
 	}

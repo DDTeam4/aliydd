@@ -89,6 +89,7 @@ Fabric_Client.newDefaultKeyValueStore({ path: store_path
 			'Successfully sent Proposal and received ProposalResponse: Status - %s, message - "%s"',
 			proposalResponses[0].response.status, proposalResponses[0].response.message));
 
+
 		// build up the request for the orderer to have the transaction committed
 		var request = {
 			proposalResponses: proposalResponses,

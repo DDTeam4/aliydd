@@ -26,12 +26,14 @@ block body
  
         .container
                 div.form-signin
-                        h2.form-signin-heading Welcome #{result.name}
-                        input#inputID(type='text',placeholder='房屋号码')
-                        input#inputArea(type='text', placeholder='面积')
-                        input#inputStatus(type='text', placeholder='状态')
-                        input#inputOwner(type='text', placeholder='持有者')
-                        input#inputUser(type='text', placeholder='使用者')
-                        
-                        button.btn.btn-lg.btn-primary.btn-block(type='submit',onclick='signuphouse()') 注册
-                        button.btn.btn-lg.btn-primary.btn-block(type='submit',onclick='queryhouse()') 查询
+                        h2.form-signin-heading 房屋注册
+                        form#signupform(action='/signuphouseService', method='post')
+                                input#inputID(type='text',placeholder='房屋号码',name='id')
+                                input#inputArea(type='text', placeholder='面积',name='area')
+                                input#inputStatus(type='text', placeholder='状态',name='status')
+                                input#inputOwner(type='text', placeholder='持有者',name='owner')
+                                input#inputUser(type='text', placeholder='使用者',name='user')
+                                        
+                                button.btn.btn-lg.btn-primary.btn-block(type='submit') 注册房屋
+                        form#queryhouseform(action='/queryhouseService', method='post')
+                                button.btn.btn-lg.btn-primary.btn-block(type='submit') 查询房屋
