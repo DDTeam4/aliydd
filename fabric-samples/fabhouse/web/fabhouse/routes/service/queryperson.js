@@ -98,8 +98,7 @@ Fabric_Client.newDefaultKeyValueStore({ path: store_path
                                 	res.render('personInfo',{result:result,id:idcard});
                                 }
                                 else
-                                	res.render('ownerInfo',{result:result,id:idcard});
-                                
+                                	res.render('ownerInfo',{result:result,id:idcard});                           
                             }
                         }
                 }
