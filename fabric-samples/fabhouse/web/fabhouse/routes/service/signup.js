@@ -7,7 +7,8 @@ router.post('/',function(req,res,next){
   var phone = req.body.phone;
   var company = req.body.company;
   var credit = req.body.credit;
-  console.log(idcard+":"+name+":"+phone+":"+company+":"+credit);
+  var password = req.body.password;
+  console.log(idcard+":"+name+":"+password+":"+phone+":"+company+":"+credit);
 
 
 var Fabric_Client = require('fabric-client');
@@ -66,7 +67,7 @@ Fabric_Client.newDefaultKeyValueStore({ path: store_path
 		//targets: let default to the peer assigned to the client
 		chaincodeId: 'fabhouse',
 		fcn: 'createPerson',
-		args: [idcard, name, phone, company, credit],                   
+		args: [idcard, name, password, phone, company, credit],                   
 		chainId: 'mychannel',
 		txId: tx_id
 	};

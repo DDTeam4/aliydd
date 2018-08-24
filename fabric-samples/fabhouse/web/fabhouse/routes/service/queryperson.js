@@ -12,8 +12,9 @@ var router = express.Router();
 
 router.post('/',function(req,res,next){
 var idcard = req.body.idcard;
+var password = req.body.password;
 var result;
-console.log("idcard: "+ idcard);
+console.log("idcard: "+ idcard+" password: "+password);
 
 
 var Fabric_Client = require('fabric-client');
@@ -85,10 +86,15 @@ Fabric_Client.newDefaultKeyValueStore({ path: store_path
                         }
                         else{
                             result = JSON.parse(str);
-                            console.log(result.name+":"+result.company+":"+result.phone+":"+result.credit); 		
-
-                            console.log("redirect to personInfo.");
-                            res.render('personInfo',{result:result,id:idcard});
+                            console.log(result.name+":"+result.company+":"+result.phone+":"+result.credit+":"+result.password);
+                            console.log(result.password == password);
+                            if(result.password!=password){
+                                res.status(400).json({error:"密码错误"});
+                            }
+                            else{
+                                console.log("redirect to personInfo.");
+                                res.render('personInfo',{result:result,id:idcard});
+                            }
                         }
                 }
 	} else {
