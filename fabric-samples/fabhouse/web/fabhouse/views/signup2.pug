@@ -1,0 +1,25 @@
+extends layout
+
+append styles
+  link(rel='stylesheet', href='/stylesheets/signup2.css')
+
+append scripts
+  script(src='/javascripts/signup.js', type='text/javascript')
+
+block content
+  body.text-center
+    form.form-signin
+      img.mb-4(src='/images/brand.png',style='width:72px; height:72px;')
+      h1.h3.mb-3.font-weight-normal 用户注册
+
+      input#inputIDCard(type='text',placeholder="身份证号",required="",autofocus="")
+      
+      input#inputName(type='text',placeholder="姓名",required="")
+      
+      input#inputPhone(type='text',placeholder="电话号码",required="")
+
+      input#inputCompany(type='text',placeholder="公司",required="")
+
+      input#inputCredit(type='text',placeholder="信用分",required="")
+
+      button.btn.btn-lg.btn-primary.btn-block(type="submit" onclick='signup()') 注册 

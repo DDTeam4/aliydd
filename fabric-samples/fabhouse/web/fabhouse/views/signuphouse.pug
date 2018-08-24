@@ -1,0 +1,37 @@
+extends ../node_modules/jade-bootstrap/_bootstrap
+append styles
+        link(href='/stylesheets/signup.css', rel='stylesheet')
+       
+
+        script(src='/javascripts/jquery.js', type='text/javascript')
+        script(src='/javascripts/signup.js', type='text/javascript')
+
+block body
+        .site-wrapper
+                .site-wrapper-inner
+                        .cover-container
+                                .masthead.clearfix
+                                        .inner
+                                                h3.masthead-brand FabHouse
+                                                nav
+                                                        ul.nav.masthead-nav
+                                                                li
+                                                                        a(href="/") 主页
+                                                                li.active
+                                                                        a(href="/signuphouse") 注册房屋
+                                                                li
+                                                                        a(href="#") 关于
+ 
+        .container
+                div.form-signin
+                        h2.form-signin-heading 房屋注册
+                        form#signupform(action='/signuphouseService', method='post')
+                                input#inputID(type='text',placeholder='房屋号码',name='id')
+                                input#inputArea(type='text', placeholder='面积',name='area')
+                                input#inputStatus(type='text', placeholder='状态',name='status')
+                                input#inputOwner(type='text', placeholder='持有者',name='owner')
+                                input#inputUser(type='text', placeholder='使用者',name='user')
+                                        
+                                button.btn.btn-lg.btn-primary.btn-block(type='submit') 注册房屋
+                        form#queryhouseform(action='/queryhouseService', method='post')
+                                button.btn.btn-lg.btn-primary.btn-block(type='submit') 查询房屋

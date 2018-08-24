@@ -40,23 +40,23 @@ import (
 type SmartContract struct {
 }
 
-// Define the person structure, with 5 properties.  Structure tags are used by encoding/json library
+// Define the person structure, with 6 properties.  Structure tags are used by encoding/json library
 type Person struct {
     Idcard   string `json:"idcard"`
     Name  string `json:"name"`
     Password  string `json:"password"`
-	Phone  string `json:"phone"`
-	Company string `json:"company"`
-	Credit  string `json:"credit"`
+    Phone  string `json:"phone"`
+    Company string `json:"company"`
+    Credit  string `json:"credit"`
 }
 
-// Define the House structure, with 4 properties.  Structure tags are used by encoding/json library
+// Define the House structure, with 5 properties.  Structure tags are used by encoding/json library
 type House struct {
     Id  string `json:"id"`
     Area   string `json:"area"`
     Status  string `json:"status"`
-	Owner  string `json:"owner"`
-	User string `json:"user"`
+    Owner  string `json:"owner"`
+    User string `json:"user"`
 }
 
 /*

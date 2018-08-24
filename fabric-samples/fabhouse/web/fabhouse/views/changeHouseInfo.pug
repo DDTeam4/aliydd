@@ -1,0 +1,61 @@
+extends ../node_modules/jade-bootstrap/_bootstrap
+append styles
+    link(href='/stylesheets/home.css', rel='stylesheet')
+    link(href='/stylesheets/signup.css', rel='stylesheet')
+
+block body
+    .site-wrapper
+        .site-wrapper-inner
+            .cover-container
+                .masthead.clearfix
+                    .inner
+                        h3.masthead-brand FabHouse
+                        nav
+                            ul.nav.masthead-nav
+                                li
+                                    a(href="/") 主页
+                                li
+                                    a(href="/rent") 我要租房
+                                li.active
+                                    a(href="/lease") 我要出租
+
+                .inner.cover
+                    .panel.panel-default
+                        .panel-heading 房间1
+                        .panel-body
+                            table.table
+                                tbody
+                                    tr
+                                        td 所有权人
+                                        td Tom
+                                    tr
+                                        td 使有权人
+                                        td Tom
+                            label.col-sm-4.control-label
+                                | 房屋状态
+                            .col-sm-8
+                                .form-group.no-margin-form-group
+                                    select.form-control(name='houseStatus', required='')
+                                        option(value='', disabled='', selected='') 房屋状态
+                                        option(value='1', selected='selected') 已租
+                                        option(value='2') 未租出
+                                        option(value='3') 转租
+                            .form-group
+                                label.col-sm-4.control-label
+                                    | 地址
+                                .col-sm-8
+                                    input#address.form-control(type='text', name='address', value='', oninvalid="this.setCustomValidity('Campo requerido')", oninput="setCustomValidity('')", placeholder='北苑小区1栋三单元202', required='', maxlength='70')
+
+                                label.col-sm-4.control-label
+                                    | 面积
+                                .col-sm-8
+                                    input#area.form-control(type='text', name='area', value='', oninvalid="this.setCustomValidity('Campo requerido')", oninput="setCustomValidity('')", placeholder='10平方米', required='', maxlength='70')
+                                label.col-sm-4.control-label
+                                    | 卫生间
+                                .col-sm-8
+                                    input#bathroom.form-control(type='text', name='address', value='', oninvalid="this.setCustomValidity('Campo requerido')", oninput="setCustomValidity('')", placeholder='独卫', required='', maxlength='70')
+
+                            .form-group.text-center
+                                button.btn.btn-default.btn-block(type='submit') 发布租房信息
+                                button.btn.btn-default.btn-block(type='submit') 返回
+
