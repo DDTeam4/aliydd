@@ -8,6 +8,7 @@ router.post('/',function(req,res,next){
   var company = req.body.company;
   var credit = req.body.credit;
   var password = req.body.password;
+  var type = req.body.type;
   console.log(idcard+":"+name+":"+password+":"+phone+":"+company+":"+credit);
 
 
@@ -90,6 +91,14 @@ Fabric_Client.newDefaultKeyValueStore({ path: store_path
 			'Successfully sent Proposal and received ProposalResponse: Status - %s, message - "%s"',
 			proposalResponses[0].response.status, proposalResponses[0].response.message));
 
+        // liuqi add @ 0824 --- redirect to user page by user types.
+        if(type=="customer"){
+            res.render("customer", {title: 'customer'});
+        }
+        else{
+            res.render("owner", {title: 'owner'});
+        }
+
 		// build up the request for the orderer to have the transaction committed
 		var request = {
 			proposalResponses: proposalResponses,
@@ -164,7 +173,6 @@ Fabric_Client.newDefaultKeyValueStore({ path: store_path
 }).catch((err) => {
 	console.error('Failed to invoke successfully :: ' + err);
 });
-  res.send('sign up successful!');
 });
 
 module.exports = router;

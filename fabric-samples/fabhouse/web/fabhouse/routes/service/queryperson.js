@@ -13,6 +13,7 @@ var router = express.Router();
 router.post('/',function(req,res,next){
 var idcard = req.body.idcard;
 var password = req.body.password;
+var type = req.body.type;
 var result;
 console.log("idcard: "+ idcard+" password: "+password);
 
@@ -92,8 +93,14 @@ Fabric_Client.newDefaultKeyValueStore({ path: store_path
                                 res.status(400).json({error:"密码错误"});
                             }
                             else{
-                                console.log("redirect to personInfo.");
-                                res.render('personInfo',{result:result,id:idcard});
+                                // redirect to user's homepage by type.
+                                if(type=="customer"){
+                                    console.log("redirect to personInfo.");
+                                    res.render('personInfo',{result:result,id:idcard});
+                                }
+                                else{
+                                    res.send("to owner's page");
+                                }
                             }
                         }
                 }
