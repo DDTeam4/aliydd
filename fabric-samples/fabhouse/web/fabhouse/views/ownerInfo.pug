@@ -20,11 +20,13 @@ block body
                                                                 li.active
                                                                         a(href="/signuphouse") 注册房屋
                                                                 li
+                                                                        a(href="/lease") 房屋列表
+                                                                li
                                                                         a(href="#") 关于
  
         .container
                 div.form-signin
-                        h2.form-signin-heading 房屋注册
+                        h2.form-signin-heading Welcome #{result.name}
                         input#inputID(type='text',placeholder='房屋号码')
                         input#inputArea(type='text', placeholder='面积')
                         input#inputStatus(type='text', placeholder='状态')

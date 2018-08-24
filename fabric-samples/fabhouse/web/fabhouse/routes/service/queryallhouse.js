@@ -10,14 +10,7 @@ var router = express.Router();
  * Chaincode query
  */
 
-router.post('/',function(req,res,next){
-var idcard = req.body.idcard;
-var password = req.body.password;
-var type = req.body.type;
-var result;
-console.log("idcard: "+ idcard+" password: "+password+" type: "+type);
-
-
+router.get('/',function(req,res,next){
 var Fabric_Client = require('fabric-client');
 var path = require('path');
 var util = require('util');
@@ -66,8 +59,8 @@ Fabric_Client.newDefaultKeyValueStore({ path: store_path
 	const request = {
 		//targets : --- letting this default to the peers assigned to the channel
 		chaincodeId: 'fabhouse',
-		fcn: 'queryPerson',
-		args: [idcard]    // when change this parameters every time, we should restart the web 
+		fcn: 'queryAllHouses',
+		args: ['']
 	};
 
 	// send the query proposal to the peer
@@ -80,29 +73,7 @@ Fabric_Client.newDefaultKeyValueStore({ path: store_path
 			console.error("error from query = ", query_responses[0]);
 		} else {
 			console.log("Response is ", query_responses[0].toString());
-                        var str = query_responses[0].toString();
-                        if(str=="") {
-                            console.log("query no result.");
-                            res.status(400).json({error:"此用户不存在"});
-                        }
-                        else{
-                            result = JSON.parse(str);
-                            console.log(result.name+":"+result.company+":"+result.phone+":"+result.credit+":"+result.password);
-                            console.log(result.password == password);
-                            if(result.password!=password){
-                                res.status(400).json({error:"密码错误"});
-                            }
-                            else{
-                                console.log("redirect to personInfo.");
-                                if(type == "customer"){
-                                	res.render('personInfo',{result:result,id:idcard});
-                                }
-                                else
-                                	res.render('ownerInfo',{result:result,id:idcard});
-                                
-                            }
-                        }
-                }
+		}
 	} else {
 		console.log("No payloads were returned from query");
 	}
