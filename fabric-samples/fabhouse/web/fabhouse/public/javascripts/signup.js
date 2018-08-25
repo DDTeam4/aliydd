@@ -38,6 +38,7 @@ function signin(){
     idcard = $("#inputIDCard").val();
     password = $("#inputPassword").val();
     type = $("input[name='type']:checked").val();
+    console.log("The type is :"+type);
     console.log("The idcard is :"+idcard);
    
     $("#loginform").submit();
@@ -46,7 +47,7 @@ function signin(){
     if(type=='customer'){
         console.log('to /customer'); 
 
-        $.post('/queryoneService',{'idcard':idcard,'password':password},
+        $.post('/queryoneService',{'idcard':idcard,'password':password, 'type':type},
                function(data){
                           console.log('post success');
                           $("body").html(data);
@@ -59,9 +60,16 @@ function signin(){
     }
     
     else {
-         $.post('/queryoneService',{'idcard':idcard,'password':password},function(data){
+         $.post('/queryoneService',{'idcard':idcard,'password':password, 'type':type},
+                function(data){
            // $.get('/owner');
 //           window.location.href="/owner"; 
+                          console.log('post success');
+                          $("body").html(data);
+               }
+       ).fail(function(jqXHR,textStatus,errorThrown){
+                   console.log("error");
+                   alert(jqXHR.responseText);
             });
        
     }
@@ -96,4 +104,36 @@ function query(){
             });
        */
     $.get('/queryService');
+}
+
+function signuphouse(){
+    console.log('signup house ...');
+    var id, area, status, owner, user;
+    id = $("#inputID").val();
+    area = $("#inputArea").val();
+    status = $("#inputStatus").val();
+    owner = $("#inputOwner").val();
+    user = $("#inputUser").val();
+    console.log(id+":"+area+":"+status+":"+owner+":"+user);
+
+    $.post('/signuphouseService',{'id':id,'area':area,'status':status,'owner':owner,'user':user},function(data){
+        console.log('post success');
+       // $.get('/customer');
+        alert("房屋注册成功");
+        }
+    ).fail(function(jqXHR,textStatus,errorThrown){
+                     console.log("error");
+                     alert(jqXHR.responseText);
+              });
+}
+
+
+function queryhouse(){
+ /*   console.log('query...');
+     $.post('/signinService',{'idcard':idcard},function(data){
+            //$.get('/owner');
+            window.location.href="/owner"; 
+            });
+       */
+    $.get('/queryhouseService');
 }

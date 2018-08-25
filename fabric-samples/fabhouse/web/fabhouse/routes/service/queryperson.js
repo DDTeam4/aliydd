@@ -15,7 +15,7 @@ var idcard = req.body.idcard;
 var password = req.body.password;
 var type = req.body.type;
 var result;
-console.log("idcard: "+ idcard+" password: "+password);
+console.log("idcard: "+ idcard+" password: "+password+" type: "+type);
 
 
 var Fabric_Client = require('fabric-client');
@@ -87,6 +87,7 @@ Fabric_Client.newDefaultKeyValueStore({ path: store_path
                         }
                         else{
                             result = JSON.parse(str);
+                            console.log("The result is ",result);
                             console.log(result.name+":"+result.company+":"+result.phone+":"+result.credit+":"+result.password);
                             console.log(result.password == password);
                             if(result.password!=password){
@@ -94,13 +95,12 @@ Fabric_Client.newDefaultKeyValueStore({ path: store_path
                             }
                             else{
                                 // redirect to user's homepage by type.
-                                if(type=="customer"){
-                                    console.log("redirect to personInfo.");
-                                    res.render('rent',{result:result,id:idcard});
+                                console.log("redirect to personInfo.");
+                                if(type == "customer"){
+                                	res.render('rent',{result:result,id:idcard});
                                 }
-                                else{
-                                    res.send("to owner's page");
-                                }
+                                else
+                                	res.render('ownerInfo',{result:result,id:idcard});                           
                             }
                         }
                 }

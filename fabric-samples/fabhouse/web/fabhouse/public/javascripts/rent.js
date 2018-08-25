@@ -80,7 +80,7 @@ function queryInfo(){
         gender =$("#selectC a").text(); 
     }
 
-    $.post("/queryHouseService",{},function(data){
+    $.post("/queryInfoService",{},function(data){
                 $("#houseContent").html(data);
                 });
     console.log(area+":"+time+":"+gender);
