@@ -1,10 +1,29 @@
-extends layout
+extends ../node_modules/jade-bootstrap/_bootstrap
+append styles
+        link(href='/stylesheets/signup.css', rel='stylesheet')
+       
 
-block content
-  h1 房屋列表
-  p Welcome #{result.owner}, this are your houses:
-  p="id: "+result.id
-  p="area: "+result.area
-  p="status: "+result.status
-  p="owner: "+result.owner
-  p="user: "+result.user
+        script(src='/javascripts/jquery.js', type='text/javascript')
+        script(src='/javascripts/signup.js', type='text/javascript')
+
+block body
+        .site-wrapper
+                .site-wrapper-inner
+                        .cover-container
+                                .masthead.clearfix
+                                        .inner
+                                                h3.masthead-brand FabHouse
+                                                nav
+                                                        ul.nav.masthead-nav
+                                                                li
+                                                                        a(href="/") 主页
+                                                                li.active
+                                                                        a(href="/lease") 全部房屋列表
+                                                                li
+                                                                        a(href="#") 关于
+ 
+        .container
+                div.form-signin
+                        h2.form-signin-heading 
+                        form#queryhouseform(action='/queryhouseService', method='post')
+                                button.btn.btn-lg.btn-primary.btn-block(type='submit') 查询房屋

@@ -2,8 +2,12 @@ extends layout
 
 block content
   h1 房屋列表
-  p Welcome  customer #{id}
-  p="name: "+result.name
-  p="company: "+result.company
-  p="phone: "+result.phone
-  p="credit: "+result.credit
+  p There are the all houses, the length is #{length}:
+  each val, index in result
+   p This is the #{index} house:
+   p="id: "+val.Record.id
+   p="area: "+val.Record.area
+   p="status: "+val.Record.status
+   p="owner: "+val.Record.owner
+   p="user: "+val.Record.user
+

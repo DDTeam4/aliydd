@@ -13,6 +13,7 @@ var customerRouter = require('./routes/router/customer');
 var ownerRouter = require('./routes/router/owner');
 var changehouseRouter = require('./routes/router/changehouse');
 var leaseRouter = require('./routes/router/lease');
+var listHouseRouter = require('./routes/router/listhouse');
 
 var signupServiceRouter = require('./routes/service/signup');
 var signuphouseServiceRouter = require('./routes/service/signuphouse');
@@ -21,6 +22,7 @@ var enrollServiceRouter = require('./routes/service/enrollAdmin');
 var registerServiceRouter = require('./routes/service/registerUser');
 var queryServiceRouter = require('./routes/service/queryallperson');
 var queryhouseServiceRouter = require('./routes/service/queryallhouse');
+var queryhousebyownerServiceRouter = require('./routes/service/queryhousebyowner');
 var queryoneServiceRouter = require('./routes/service/queryperson');
 
 var app = express();
@@ -45,13 +47,14 @@ app.use('/customer',customerRouter);
 app.use('/owner',ownerRouter);
 app.use('/changehouse',changehouseRouter);
 app.use('/lease',leaseRouter);
-
+app.use('/listHouse',listHouseRouter);
 
 app.use('/signupService',signupServiceRouter);
 app.use('/signuphouseService',signuphouseServiceRouter);
 app.use('/signinService',signinServiceRouter);
 app.use('/queryService',queryServiceRouter);
 app.use('/queryhouseService',queryhouseServiceRouter);
+app.use('/queryhousebyownerService',queryhousebyownerServiceRouter);
 app.use('/queryoneService',queryoneServiceRouter);
 
 // catch 404 and forward to error handler

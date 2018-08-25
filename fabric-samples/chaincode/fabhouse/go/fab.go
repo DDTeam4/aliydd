@@ -59,6 +59,7 @@ type House struct {
     User string `json:"user"`
 }
 
+
 /*
  * The Init method is called when the Smart Contract "fabcar" is instantiated by the blockchain network
  * Best practice is to have any Ledger initialization in separate function -- see initLedger()

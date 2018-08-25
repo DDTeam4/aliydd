@@ -11,7 +11,10 @@ var router = express.Router();
  */
 
 router.post('/',function(req,res,next){
+var name=req.query.name;
 
+console.log("The received req is :",req.query);
+console.log("The received name is :",name);
 
 var Fabric_Client = require('fabric-client');
 var path = require('path');
@@ -57,12 +60,12 @@ Fabric_Client.newDefaultKeyValueStore({ path: store_path
         //modified by ydd at 201808
         // queryPerson chaincode function - requires 1 argument, ex: args: ['ID'],
 	// queryAllPersons chaincode function - requires no arguments , ex: args: [''],
-
+  
 	const request = {
 		//targets : --- letting this default to the peers assigned to the channel
 		chaincodeId: 'fabhouse',
-		fcn: 'queryAllHouses',
-		args: ['']
+		fcn: 'queryByOwner',
+		args: [name]
 	};
 
 	// send the query proposal to the peer
@@ -91,7 +94,7 @@ Fabric_Client.newDefaultKeyValueStore({ path: store_path
                             */
                             console.log("The result is :",result[0].Key);  //get the result
                             console.log(result[0].Record.id+":"+result[0].Record.area+":"+result[0].Record.status+":"+result[0].Record.owner+":"+result[0].Record.user);
-                           	console.log("redirect to lease.pug.");
+                           	console.log("redirect to listHouse.pug.");
                         	//res.render('listHouse',{result:result});
                         	//res.render('listHouse',{result:result[0].Record});  
                         	res.render('listHouse',{result:result,length:length});                          
