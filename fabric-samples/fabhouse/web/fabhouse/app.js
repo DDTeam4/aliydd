@@ -24,6 +24,7 @@ var queryServiceRouter = require('./routes/service/queryallperson');
 var queryhouseServiceRouter = require('./routes/service/queryallhouse');
 var queryhousebyownerServiceRouter = require('./routes/service/queryhousebyowner');
 var queryoneServiceRouter = require('./routes/service/queryperson');
+var queryInfoServiceRouter = require('./routes/service/queryinfo');
 
 var app = express();
 
@@ -56,6 +57,7 @@ app.use('/queryService',queryServiceRouter);
 app.use('/queryhouseService',queryhouseServiceRouter);
 app.use('/queryhousebyownerService',queryhousebyownerServiceRouter);
 app.use('/queryoneService',queryoneServiceRouter);
+app.use('/queryInfoService',queryInfoServiceRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

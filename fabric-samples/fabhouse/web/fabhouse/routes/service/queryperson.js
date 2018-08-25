@@ -94,9 +94,10 @@ Fabric_Client.newDefaultKeyValueStore({ path: store_path
                                 res.status(400).json({error:"密码错误"});
                             }
                             else{
+                                // redirect to user's homepage by type.
                                 console.log("redirect to personInfo.");
                                 if(type == "customer"){
-                                	res.render('personInfo',{result:result,id:idcard});
+                                	res.render('rent',{result:result,id:idcard});
                                 }
                                 else
                                 	res.render('ownerInfo',{result:result,id:idcard});                           
