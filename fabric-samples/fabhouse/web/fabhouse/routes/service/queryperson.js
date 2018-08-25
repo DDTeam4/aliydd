@@ -96,7 +96,7 @@ Fabric_Client.newDefaultKeyValueStore({ path: store_path
                                 // redirect to user's homepage by type.
                                 if(type=="customer"){
                                     console.log("redirect to personInfo.");
-                                    res.render('personInfo',{result:result,id:idcard});
+                                    res.render('rent',{result:result,id:idcard});
                                 }
                                 else{
                                     res.send("to owner's page");

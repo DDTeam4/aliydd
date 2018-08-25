@@ -17,6 +17,7 @@ var enrollServiceRouter = require('./routes/service/enrollAdmin');
 var registerServiceRouter = require('./routes/service/registerUser');
 var queryServiceRouter = require('./routes/service/queryallperson');
 var queryoneServiceRouter = require('./routes/service/queryperson');
+var queryHouseServiceRouter = require('./routes/service/queryhouse');
 
 var app = express();
 
@@ -42,6 +43,7 @@ app.use('/signupService',signupServiceRouter);
 app.use('/signinService',signinServiceRouter);
 app.use('/queryService',queryServiceRouter);
 app.use('/queryoneService',queryoneServiceRouter);
+app.use('/queryHouseService',queryHouseServiceRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
