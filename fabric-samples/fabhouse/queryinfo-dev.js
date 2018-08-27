@@ -1,14 +1,12 @@
-var express = require('express');
-var router = express.Router();
-
-router.post('/', function(req, res, next) {
-
-var district = req.body.district;
-var duration = req.body.duration;
-var gender = req.body.gender;
-
-var result;
-console.log(district+":"+duration+":"+gender);
+'use strict';
+/*
+* Copyright IBM Corp All Rights Reserved
+*
+* SPDX-License-Identifier: Apache-2.0
+*/
+/*
+ * Chaincode query
+ */
 
 var Fabric_Client = require('fabric-client');
 var path = require('path');
@@ -51,10 +49,13 @@ Fabric_Client.newDefaultKeyValueStore({ path: store_path
 		throw new Error('Failed to get user1.... run registerUser.js');
 	}
 
+	// queryCar chaincode function - requires 1 argument, ex: args: ['CAR4'],
+	// queryAllCars chaincode function - requires no arguments , ex: args: [''],
 	const request = {
+		//targets : --- letting this default to the peers assigned to the channel
 		chaincodeId: 'fabhouse',
 		fcn: 'queryInfo',
-		args: [district,duration,gender] 
+		args: ["0","3","0"]   //this args should be ["Amy"], not ['Amy']
 	};
 
 	// send the query proposal to the peer
@@ -67,17 +68,6 @@ Fabric_Client.newDefaultKeyValueStore({ path: store_path
 			console.error("error from query = ", query_responses[0]);
 		} else {
 			console.log("Response is ", query_responses[0].toString());
-            var str = query_responses[0].toString();
-            if(str==""){
-                console.log("query no result");
-                res.status(500).json({error:"抱歉，没有合适您的房源！"});
-            }
-            else{
-                result = JSON.parse(str);
-                var length = result.length;
-                console.log("length: "+length);
-                res.render("infolist",{result:result,length:length});
-            }
 		}
 	} else {
 		console.log("No payloads were returned from query");
@@ -85,8 +75,3 @@ Fabric_Client.newDefaultKeyValueStore({ path: store_path
 }).catch((err) => {
 	console.error('Failed to query successfully :: ' + err);
 });
-});
-
-module.exports = router;  
-
-

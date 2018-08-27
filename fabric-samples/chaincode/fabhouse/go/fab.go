@@ -120,6 +120,8 @@ func (s *SmartContract) Invoke(APIstub shim.ChaincodeStubInterface) sc.Response 
 		return s.changeToUnrent(APIstub, args)
 	}else if function == "queryByOwner" {
 		return s.queryByOwner(APIstub, args)
+	}else if function == "queryInfo" {
+		return s.queryInfo(APIstub, args)
 	}else if function == "queryByUser" {
 		return s.queryByUser(APIstub, args)
 	}else if function == "queryByPassword" {
@@ -293,7 +295,7 @@ func (s *SmartContract) queryAllHouses(APIstub shim.ChaincodeStubInterface) sc.R
 }
 
 func (s *SmartContract) queryAllInfos(APIstub shim.ChaincodeStubInterface) sc.Response {
-//infos id are from 1000 to 1999
+//infos id are from 10000 to 19999
 	startKey := "10000"
 	endKey := "19999"
 
@@ -365,6 +367,66 @@ func (s *SmartContract) queryByOwner(APIstub shim.ChaincodeStubInterface, args [
 	name := args[0]
 	
 	queryString := fmt.Sprintf("{\"selector\":{\"owner\":\"%s\"}}", name)
+	
+	resultsIterator, err := APIstub.GetQueryResult(queryString)
+ 	if err!=nil{
+    	 return shim.Error("Rich query failed 1")
+   	}
+
+  	houses,err:=getListResult(resultsIterator)
+   	if err!=nil{
+      		return shim.Error("Rich query failed 2")
+   	}
+   	return shim.Success(houses)
+
+}
+
+//query info by condition
+func (s *SmartContract) queryInfo(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
+	if len(args) < 3 {
+		return shim.Error("Incorrect number of arguments. Expecting 3")
+	}
+
+	district := args[0]
+    duration := args[1]
+    gender := args[2]
+    var queryString string
+
+    if(gender == "0"){
+        if(district =="0"){
+            if(duration == "0"){
+                return s.queryAllInfos(APIstub);
+            }else{
+                queryString = fmt.Sprintf("{\"selector\":{\"duration\":\"%s\"}}",duration)
+            }
+        }else{
+            if(duration == "0"){
+                queryString = fmt.Sprintf("{\"selector\":{\"district\":\"%s\"}}",district)
+            }else{
+                queryString = fmt.Sprintf("{\"selector\":{\"district\":\"%s\",\"duration\":\"%s\"}}", district, duration)
+            }
+       
+        }
+    } else {
+         if(district =="0"){
+            if(duration == "0"){
+                queryString =  fmt.Sprintf("{\"selector\":{\"gender\":\"%s\"}}",gender)
+            }else{
+                queryString = fmt.Sprintf("{\"selector\":{\"gender\":\"%s\",\"duration\":\"%s\"}}", gender, duration)
+            }
+        }else{
+            if(duration == "0"){
+                queryString = fmt.Sprintf("{\"selector\":{\"gender\":\"%s\",\"district\":\"%s\"}}", gender, district)
+            }else{
+                queryString = fmt.Sprintf("{\"selector\":{\"district\":\"%s\",\"duration\":\"%s\",\"gender\":\"%s\"}}", district, duration,gender)
+            }
+       
+        }
+   
+    }
+
+//	queryString := fmt.Sprintf("{\"selector\":{\"owner\":\"%s\"}}", name)
+
 	
 	resultsIterator, err := APIstub.GetQueryResult(queryString)
  	if err!=nil{

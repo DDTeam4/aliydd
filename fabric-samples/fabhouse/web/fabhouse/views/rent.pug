@@ -1,7 +1,6 @@
 extends layout
 
 append styles
-    //link(rel='stylesheet', href='/stylesheets/signup.css') 
     link(rel='stylesheet', href='/stylesheets/rent.css')
 
 append scripts
@@ -11,24 +10,13 @@ append scripts
     script(src='/javascripts/rent.js', type='text/javascript')
 
 block content
-    .site-wrapper
-      //
-        .site-wrapper-inner
-            .cover-container
-                .masthead.clearfix
-                    .inner
-                        h3.masthead-brand FabHouse
-                        nav
-                            ul.nav.masthead-nav
-                                li
-                                    a(href="/") 主页
-                                li
-                                    a(href="/signup") 注册
-                                li.active
-                                    a(href="/signin") 登录
-                                li
-                                    a(href="#") 关于
-       
+
+    nav.navbar.fixed-top.navbar-light.bg-light
+        a.navbar-brand(href="/") FabHouse
+        div.welcome 欢迎您， #{result.name}
+        button.btn.btn-outline-info.myrent 我的租房
+
+      
     .container
         div.header.condition 房源筛选
         ul.select

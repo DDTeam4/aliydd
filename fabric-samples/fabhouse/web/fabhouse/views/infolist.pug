@@ -14,21 +14,16 @@ block content
     .container
         ul#houseList
             div.header 房源信息    
-
-            li
-                div.content-panel
-                    div.name 整租 | 塔子湖锦绣家园幽兰苑 1室0厅0卫
-                    div.description 1室0厅0卫     10㎡
-                    div.address 后湖    塔子湖锦绣家园幽兰苑
-                    div.credit  750蚂蚁分
-                    button.want.btn.btn-danger(data-toggle="modal" data-target="#exampleModal") 我有意向
-            li
-                div.content-panel
-                    div.name 整租 | 塔子湖锦绣家园幽兰苑
-                    div.description 1室0厅0卫     10㎡
-                    div.address 后湖    塔子湖锦绣家园幽兰苑
-                    div.credit  683蚂蚁分
-                    button.want.btn.btn-danger 我有意向
+            each item,index in result
+                li(id="li"+index)
+                    div.content-panel
+                        div.name=item.Record.name
+                        div.description=item.Record.description
+                        div.address=item.Record.address
+                        div.credit=item.Record.credit+"蚂蚁分"
+                        span.infoid(style="display:none")=item.Record.infoid
+                        span.ownerid(style="display:none")=item.Record.OwnerId
+                        button.want.btn.btn-danger(data-toggle="modal" data-target="#exampleModal" onclick="want("+index+")") 我有意向
 
 
     // use bootstrap's modal to send price request to the owner

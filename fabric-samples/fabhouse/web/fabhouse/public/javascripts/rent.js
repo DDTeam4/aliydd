@@ -1,6 +1,8 @@
 $(document).ready(function(){
     $(".select-no").hide();
-	$("#select1 dd").click(function () {
+	$("#select1 dd ").click(function () {
+//        window.district = $("select1 dd a").index(this);
+//        console.log($("select1 dd a").index(this));
 		$(this).addClass("selected").siblings().removeClass("selected");
 		if ($(this).hasClass("select-all")) {
 			$("#selectA").remove();
@@ -15,6 +17,7 @@ $(document).ready(function(){
 	});
 	
 	$("#select2 dd").click(function () {
+//        window.duration = $("select2 dd").index(this);
 		$(this).addClass("selected").siblings().removeClass("selected");
 		if ($(this).hasClass("select-all")) {
 			$("#selectB").remove();
@@ -29,6 +32,7 @@ $(document).ready(function(){
 	});
 	
 	$("#select3 dd").click(function () {
+//        window.gender = $("select3 dd").index(this);
 		$(this).addClass("selected").siblings().removeClass("selected");
 		if ($(this).hasClass("select-all")) {
 			$("#selectC").remove();
@@ -69,21 +73,26 @@ $(document).ready(function(){
 
 function queryInfo(){
     console.log("queryInfo()...");
-    var area='all',time='all',gender='all';
+/*    var area='all',time='all',gender='all';
     if($("#selectA a").text()!=""){
-        area =$("#selectA a").text(); 
+//        area =$("#selectA a").text(); 
     }
     if($("#selectB a").text()!=""){
-        time =$("#selectB a").text(); 
+//        time =$("#selectB a").text(); 
     }
     if($("#selectC a").text()!=""){
-        gender =$("#selectC a").text(); 
+//        gender =$("#selectC a").text(); 
     }
+*/
+    var district = $("#select1 dd").index($("#select1 .selected"));
+    var duration = $("#select2 dd").index($("#select2 .selected"));
+    var gender = $("#select3 dd").index($("#select3 .selected"));
+    console.log(district+":"+duration+":"+gender);
 
-    $.post("/queryInfoService",{},function(data){
+    $.post("/queryInfoService",{"district":district, "duration":duration, "gender":gender},function(data){
                 $("#houseContent").html(data);
                 });
-    console.log(area+":"+time+":"+gender);
+//    console.log(area+":"+time+":"+gender);
 }
 
 function submitPrice(){
@@ -92,3 +101,9 @@ function submitPrice(){
     console.log(price);
     $("#priceform").submit();
 }
+
+function want(index){
+    console.log("want()..."+index);
+    console.log($("#li"+index+" .infoid").html());
+}
+
