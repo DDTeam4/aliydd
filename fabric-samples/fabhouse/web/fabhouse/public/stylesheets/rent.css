@@ -16,6 +16,33 @@ body{font:12px/180% Arial, Helvetica, sans-serif, "微软雅黑";}
 .select-no{color:#999}
 .select .select-result a{padding-right:20px;background:#f60 url("close.gif") right 9px no-repeat}
 .select .select-result a:hover{background-position:right -15px}
+
+nav{
+    padding: 20px 573px !important;
+}
+
+.navbar-brand{
+    font-weight: 500 !important;
+    font-size: 24px !important;
+}
+
+.container{
+    margin-top: 100px;
+}
+
+.welcome{
+    margin-left:290px !important;
+    font-size: 13px !important;
+    font-color: gray !important;
+    font-weight: lighter !important;
+}
+
+.myrent{
+    position: relative !important;
+    left: -30px !important;
+    font-size: 13px !important;
+}
+
 .header{
 	font-size: 25px;
 	font-weight: 100;
