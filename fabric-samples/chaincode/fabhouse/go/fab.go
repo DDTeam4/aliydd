@@ -59,6 +59,18 @@ type House struct {
     User string `json:"user"`
 }
 
+// Define the Info structure, with 7 properties. Structure tags are used by encoding/json library
+type Info struct {
+    InfoId string `json:"infoid"`
+    Name string `json:"name"`
+    Description string `json:"description"`
+    Address string `json:"address"`
+    Credit string `json:"credit"`
+    District string `json:"district"`
+    Duration string `json:"duration"`
+    Gender string `json:"gender"`
+    OwnerId string `OwnerId:"ownerid"`
+}
 
 /*
  * The Init method is called when the Smart Contract "fabcar" is instantiated by the blockchain network
@@ -92,8 +104,12 @@ func (s *SmartContract) Invoke(APIstub shim.ChaincodeStubInterface) sc.Response 
 		return s.queryHouse(APIstub, args)
 	} else if function == "createHouse" {
 		return s.createHouse(APIstub, args)
-	} else if function == "queryAllHouses" {
+	}else if function == "createInfo" {
+		return s.createInfo(APIstub, args)
+	}else if function == "queryAllHouses" {
 		return s.queryAllHouses(APIstub)
+	} else if function == "queryAllInfos" {
+		return s.queryAllInfos(APIstub)
 	} else if function == "changeHouse" {
 		return s.changeHouse(APIstub, args)
 	}else if function == "queryUnrentHouses" {
@@ -153,6 +169,23 @@ func (s *SmartContract) createPerson(APIstub shim.ChaincodeStubInterface, args [
 	return shim.Success(nil)
 }
 
+// owner's broadcast the renting information.
+func (s *SmartContract) createInfo(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
+
+	if len(args) != 9{
+		return shim.Error("Incorrect number of arguments. Expecting 9")
+	}
+
+    fmt.Printf("before createInfo()")
+	var info = Info{InfoId: args[0], Name: args[1], Description: args[2], Address: args[3], Credit: args[4], District: args[5], Duration: args[6], Gender: args[7], OwnerId:args[8]}
+
+    fmt.Printf("in createInfo()...")
+	infoAsBytes, _ := json.Marshal(info)
+	APIstub.PutState(args[0], infoAsBytes)
+
+	return shim.Success(nil)
+}
+
 func getListResult(resultsIterator shim.StateQueryIteratorInterface) ([]byte,error){
 
    defer resultsIterator.Close()
@@ -182,6 +215,7 @@ func getListResult(resultsIterator shim.StateQueryIteratorInterface) ([]byte,err
       bArrayMemberAlreadyWritten = true
    }
    buffer.WriteString("]")
+   fmt.Printf("in getListResult()...")
    fmt.Printf("queryResult:\n%s\n", buffer.String())
    return buffer.Bytes(), nil
 }
@@ -254,6 +288,22 @@ func (s *SmartContract) queryAllHouses(APIstub shim.ChaincodeStubInterface) sc.R
 	houses,err:=getListResult(resultsIterator)
 	if err!=nil{
 	      return shim.Error("getListResult failed")
+	}
+	return shim.Success(houses)
+}
+
+func (s *SmartContract) queryAllInfos(APIstub shim.ChaincodeStubInterface) sc.Response {
+//infos id are from 1000 to 1999
+	startKey := "10000"
+	endKey := "19999"
+
+	resultsIterator, err := APIstub.GetStateByRange(startKey, endKey)
+	if err != nil {
+		return shim.Error(err.Error())
+	}
+	houses,err:=getListResult(resultsIterator)
+	if err!=nil{
+	      return shim.Error("getInfoListResult failed")
 	}
 	return shim.Success(houses)
 }
