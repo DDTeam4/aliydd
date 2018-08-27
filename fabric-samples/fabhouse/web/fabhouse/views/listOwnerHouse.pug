@@ -29,7 +29,7 @@ block content
         .modal-dialog(role='document')
             .modal-content
                 .modal-header
-                    h5#exampleModalLabel.modal-title 提交申请
+                    h5#exampleModalLabel.modal-title 填写出租信息
                     button.close(type='button', data-dismiss='modal', aria-label='Close')
                       span(aria-hidden='true') ×
                 .modal-body
@@ -55,5 +55,5 @@ block content
                             input.form-control#price(type='text', placeholder="房主ID",required='true')
                             small.form-text.text-muted 请按照示例规范如实填写，否则系统无法为您提交出租申请
                 .modal-footer
-                    button.btn.btn-secondary(type='button', data-dismiss='modal') 取消申请
-                    button.btn.btn-primary(type='button' onclick='submitPrice()') 提交申请
+                    button.btn.btn-secondary(type='button', data-dismiss='modal') 取消出租
+                    button.btn.btn-primary(type='button' onclick='submitPrice()') 确认出租
