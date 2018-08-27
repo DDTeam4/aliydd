@@ -20,13 +20,13 @@ block body
                                                                 li.active
                                                                         a(href="/signuphouse") 注册房屋
                                                                 li
-                                                                        a(href="/lease") 房屋列表
+                                                                        a(href="/lease") 全部房屋列表
                                                                 li
                                                                         a(href="#") 关于
  
         .container
                 div.form-signin
-                        h2.form-signin-heading 房屋注册
+                        h2.form-signin-heading 欢迎您， #{result.name}
                         form#signupform(action='/signuphouseService', method='post')
                                 input#inputID(type='text',placeholder='房屋号码',name='id')
                                 input#inputArea(type='text', placeholder='面积',name='area')
@@ -35,5 +35,6 @@ block body
                                 input#inputUser(type='text', placeholder='使用者',name='user')
                                         
                                 button.btn.btn-lg.btn-primary.btn-block(type='submit') 注册房屋
-                        form#queryhouseform(action='/queryhouseService', method='post')
+                        -var name=result.name
+                        form#queryhouseform(action='/queryhousebyownerService?name='+name, method='post')
                                 button.btn.btn-lg.btn-primary.btn-block(type='submit') 查询房屋

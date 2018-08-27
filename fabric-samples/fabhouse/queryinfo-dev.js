@@ -1,5 +1,3 @@
-var express = require('express');
-var router = express.Router();
 'use strict';
 /*
 * Copyright IBM Corp All Rights Reserved
@@ -9,14 +7,6 @@ var router = express.Router();
 /*
  * Chaincode query
  */
-
-router.post('/',function(req,res,next){
-var idcard = req.body.idcard;
-var password = req.body.password;
-var type = req.body.type;
-var result;
-console.log("idcard: "+ idcard+" password: "+password+" type: "+type);
-
 
 var Fabric_Client = require('fabric-client');
 var path = require('path');
@@ -59,15 +49,13 @@ Fabric_Client.newDefaultKeyValueStore({ path: store_path
 		throw new Error('Failed to get user1.... run registerUser.js');
 	}
 
-        //modified by ydd at 201808
-        // queryPerson chaincode function - requires 1 argument, ex: args: ['ID'],
-	// queryAllPersons chaincode function - requires no arguments , ex: args: [''],
-
+	// queryCar chaincode function - requires 1 argument, ex: args: ['CAR4'],
+	// queryAllCars chaincode function - requires no arguments , ex: args: [''],
 	const request = {
 		//targets : --- letting this default to the peers assigned to the channel
 		chaincodeId: 'fabhouse',
-		fcn: 'queryPerson',
-		args: [idcard]    // when change this parameters every time, we should restart the web 
+		fcn: 'queryInfo',
+		args: ["0","3","0"]   //this args should be ["Amy"], not ['Amy']
 	};
 
 	// send the query proposal to the peer
@@ -80,36 +68,10 @@ Fabric_Client.newDefaultKeyValueStore({ path: store_path
 			console.error("error from query = ", query_responses[0]);
 		} else {
 			console.log("Response is ", query_responses[0].toString());
-                        var str = query_responses[0].toString();
-                        if(str=="") {
-                            console.log("query no result.");
-                            res.status(400).json({error:"此用户不存在"});
-                        }
-                        else{
-                            result = JSON.parse(str);
-                            console.log("The result is ",result);
-                            console.log(result.name+":"+result.company+":"+result.phone+":"+result.credit+":"+result.password);
-                            console.log(result.password == password);
-                            if(result.password!=password){
-                                res.status(400).json({error:"密码错误"});
-                            }
-                            else{
-                                // redirect to user's homepage by type.
-                                console.log("redirect to personInfo.");
-                                if(type == "customer"){
-                                	res.render('rent',{result:result,id:idcard});
-                                }
-                                else
-                                	res.render('ownerInfo',{result:result,id:idcard});                           
-                            }
-                        }
-                }
+		}
 	} else {
 		console.log("No payloads were returned from query");
 	}
 }).catch((err) => {
 	console.error('Failed to query successfully :: ' + err);
 });
-});
-
-module.exports = router;

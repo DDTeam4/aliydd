@@ -1,5 +1,60 @@
-extends layout
+append styles
+    link(href='/stylesheets/home.css', rel='stylesheet')
 
-block content
-  h1= title
-  p Welcome to #{title}
+block body
+    .site-wrapper
+        .site-wrapper-inner
+            .cover-container
+                .masthead.clearfix
+                    .inner
+                        h3.masthead-brand FabHouse
+                        nav
+                            ul.nav.masthead-nav
+                                li
+                                    a(href="/") 主页
+                                li
+                                    a(href="/rent") 我要租房
+                                li.active
+                                    a(href="/lease") 我要出租
+
+                .inner.cover
+                    .panel.panel-default
+                        .panel-heading 房间1
+                        .panel-body
+                            table.table
+                                tbody
+                                    tr
+                                        td 地址
+                                        td XXXX
+                                    tr
+                                        td 价格
+                                        td 998
+                                    tr
+                                        td 可用租期
+                                        td 998
+                                    tr
+                                        td 房主信用积分
+                                        td 660
+                            .form-group.text-center
+                                button.btn.btn-default.btn-block(type='submit') 租房
+                    .panel.panel-default
+                        .panel-heading 房间2
+                        .panel-body
+                            table.table
+                                tbody
+                                    tr
+                                        td 地址
+                                        td XXXX
+                                    tr
+                                        td 价格
+                                        td 998
+                                    tr
+                                        td 可用租期
+                                        td 998
+                                    tr
+                                        td 房主信用积分
+                                        td 660
+                            .form-group.text-center
+                                button.btn.btn-default.btn-block(type='submit') 租房
+
+

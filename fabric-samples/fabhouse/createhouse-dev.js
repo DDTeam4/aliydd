@@ -62,7 +62,7 @@ Fabric_Client.newDefaultKeyValueStore({ path: store_path
 		//targets: let default to the peer assigned to the client
 		chaincodeId: 'fabhouse',
 		fcn: 'createHouse',
-		args:['1002', '100', 'rented', 'Amy', 'Bob'],
+		args:['1003', '100', 'rented', 'Amy', 'Bob'],
 		chainId: 'mychannel',
 		txId: tx_id
 	};

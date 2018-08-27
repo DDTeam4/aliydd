@@ -59,6 +59,19 @@ type House struct {
     User string `json:"user"`
 }
 
+// Define the Info structure, with 7 properties. Structure tags are used by encoding/json library
+type Info struct {
+    InfoId string `json:"infoid"`
+    Name string `json:"name"`
+    Description string `json:"description"`
+    Address string `json:"address"`
+    Credit string `json:"credit"`
+    District string `json:"district"`
+    Duration string `json:"duration"`
+    Gender string `json:"gender"`
+    OwnerId string `OwnerId:"ownerid"`
+}
+
 /*
  * The Init method is called when the Smart Contract "fabcar" is instantiated by the blockchain network
  * Best practice is to have any Ledger initialization in separate function -- see initLedger()
@@ -91,8 +104,12 @@ func (s *SmartContract) Invoke(APIstub shim.ChaincodeStubInterface) sc.Response 
 		return s.queryHouse(APIstub, args)
 	} else if function == "createHouse" {
 		return s.createHouse(APIstub, args)
-	} else if function == "queryAllHouses" {
+	}else if function == "createInfo" {
+		return s.createInfo(APIstub, args)
+	}else if function == "queryAllHouses" {
 		return s.queryAllHouses(APIstub)
+	} else if function == "queryAllInfos" {
+		return s.queryAllInfos(APIstub)
 	} else if function == "changeHouse" {
 		return s.changeHouse(APIstub, args)
 	}else if function == "queryUnrentHouses" {
@@ -103,6 +120,8 @@ func (s *SmartContract) Invoke(APIstub shim.ChaincodeStubInterface) sc.Response 
 		return s.changeToUnrent(APIstub, args)
 	}else if function == "queryByOwner" {
 		return s.queryByOwner(APIstub, args)
+	}else if function == "queryInfo" {
+		return s.queryInfo(APIstub, args)
 	}else if function == "queryByUser" {
 		return s.queryByUser(APIstub, args)
 	}else if function == "queryByPassword" {
@@ -152,6 +171,23 @@ func (s *SmartContract) createPerson(APIstub shim.ChaincodeStubInterface, args [
 	return shim.Success(nil)
 }
 
+// owner's broadcast the renting information.
+func (s *SmartContract) createInfo(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
+
+	if len(args) != 9{
+		return shim.Error("Incorrect number of arguments. Expecting 9")
+	}
+
+    fmt.Printf("before createInfo()")
+	var info = Info{InfoId: args[0], Name: args[1], Description: args[2], Address: args[3], Credit: args[4], District: args[5], Duration: args[6], Gender: args[7], OwnerId:args[8]}
+
+    fmt.Printf("in createInfo()...")
+	infoAsBytes, _ := json.Marshal(info)
+	APIstub.PutState(args[0], infoAsBytes)
+
+	return shim.Success(nil)
+}
+
 func getListResult(resultsIterator shim.StateQueryIteratorInterface) ([]byte,error){
 
    defer resultsIterator.Close()
@@ -181,6 +217,7 @@ func getListResult(resultsIterator shim.StateQueryIteratorInterface) ([]byte,err
       bArrayMemberAlreadyWritten = true
    }
    buffer.WriteString("]")
+   fmt.Printf("in getListResult()...")
    fmt.Printf("queryResult:\n%s\n", buffer.String())
    return buffer.Bytes(), nil
 }
@@ -257,6 +294,22 @@ func (s *SmartContract) queryAllHouses(APIstub shim.ChaincodeStubInterface) sc.R
 	return shim.Success(houses)
 }
 
+func (s *SmartContract) queryAllInfos(APIstub shim.ChaincodeStubInterface) sc.Response {
+//infos id are from 10000 to 19999
+	startKey := "10000"
+	endKey := "19999"
+
+	resultsIterator, err := APIstub.GetStateByRange(startKey, endKey)
+	if err != nil {
+		return shim.Error(err.Error())
+	}
+	houses,err:=getListResult(resultsIterator)
+	if err!=nil{
+	      return shim.Error("getInfoListResult failed")
+	}
+	return shim.Success(houses)
+}
+
 
 
 func (s *SmartContract) queryUnrentHouses(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
@@ -314,6 +367,66 @@ func (s *SmartContract) queryByOwner(APIstub shim.ChaincodeStubInterface, args [
 	name := args[0]
 	
 	queryString := fmt.Sprintf("{\"selector\":{\"owner\":\"%s\"}}", name)
+	
+	resultsIterator, err := APIstub.GetQueryResult(queryString)
+ 	if err!=nil{
+    	 return shim.Error("Rich query failed 1")
+   	}
+
+  	houses,err:=getListResult(resultsIterator)
+   	if err!=nil{
+      		return shim.Error("Rich query failed 2")
+   	}
+   	return shim.Success(houses)
+
+}
+
+//query info by condition
+func (s *SmartContract) queryInfo(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
+	if len(args) < 3 {
+		return shim.Error("Incorrect number of arguments. Expecting 3")
+	}
+
+	district := args[0]
+    duration := args[1]
+    gender := args[2]
+    var queryString string
+
+    if(gender == "0"){
+        if(district =="0"){
+            if(duration == "0"){
+                return s.queryAllInfos(APIstub);
+            }else{
+                queryString = fmt.Sprintf("{\"selector\":{\"duration\":\"%s\"}}",duration)
+            }
+        }else{
+            if(duration == "0"){
+                queryString = fmt.Sprintf("{\"selector\":{\"district\":\"%s\"}}",district)
+            }else{
+                queryString = fmt.Sprintf("{\"selector\":{\"district\":\"%s\",\"duration\":\"%s\"}}", district, duration)
+            }
+       
+        }
+    } else {
+         if(district =="0"){
+            if(duration == "0"){
+                queryString =  fmt.Sprintf("{\"selector\":{\"gender\":\"%s\"}}",gender)
+            }else{
+                queryString = fmt.Sprintf("{\"selector\":{\"gender\":\"%s\",\"duration\":\"%s\"}}", gender, duration)
+            }
+        }else{
+            if(duration == "0"){
+                queryString = fmt.Sprintf("{\"selector\":{\"gender\":\"%s\",\"district\":\"%s\"}}", gender, district)
+            }else{
+                queryString = fmt.Sprintf("{\"selector\":{\"district\":\"%s\",\"duration\":\"%s\",\"gender\":\"%s\"}}", district, duration,gender)
+            }
+       
+        }
+   
+    }
+
+//	queryString := fmt.Sprintf("{\"selector\":{\"owner\":\"%s\"}}", name)
+
 	
 	resultsIterator, err := APIstub.GetQueryResult(queryString)
  	if err!=nil{

@@ -82,10 +82,19 @@ Fabric_Client.newDefaultKeyValueStore({ path: store_path
                         }
                         else{
                             result = JSON.parse(str);
+                            var length=result.length;
+                            console.log("The length of result is :",result.length);
+                           /* var i;
+                            for(i=0;i<length;i++){
+
+                            }
+                            */
                             console.log("The result is :",result[0].Key);  //get the result
                             console.log(result[0].Record.id+":"+result[0].Record.area+":"+result[0].Record.status+":"+result[0].Record.owner+":"+result[0].Record.user);
                            	console.log("redirect to lease.pug.");
-                        	res.render('lease',{result:result[0].Record});                           
+                        	//res.render('listHouse',{result:result});
+                        	//res.render('listHouse',{result:result[0].Record});  
+                        	res.render('listAllHouse',{result:result,length:length});                          
                             }
                 }
 	} else {

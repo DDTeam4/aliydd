@@ -11,12 +11,10 @@ var router = express.Router();
  */
 
 router.post('/',function(req,res,next){
-var idcard = req.body.idcard;
-var password = req.body.password;
-var type = req.body.type;
-var result;
-console.log("idcard: "+ idcard+" password: "+password+" type: "+type);
+var name=req.query.name;
 
+console.log("The received req is :",req.query);
+console.log("The received name is :",name);
 
 var Fabric_Client = require('fabric-client');
 var path = require('path');
@@ -62,12 +60,12 @@ Fabric_Client.newDefaultKeyValueStore({ path: store_path
         //modified by ydd at 201808
         // queryPerson chaincode function - requires 1 argument, ex: args: ['ID'],
 	// queryAllPersons chaincode function - requires no arguments , ex: args: [''],
-
+  
 	const request = {
 		//targets : --- letting this default to the peers assigned to the channel
 		chaincodeId: 'fabhouse',
-		fcn: 'queryPerson',
-		args: [idcard]    // when change this parameters every time, we should restart the web 
+		fcn: 'queryByOwner',
+		args: [name]
 	};
 
 	// send the query proposal to the peer
@@ -80,29 +78,27 @@ Fabric_Client.newDefaultKeyValueStore({ path: store_path
 			console.error("error from query = ", query_responses[0]);
 		} else {
 			console.log("Response is ", query_responses[0].toString());
-                        var str = query_responses[0].toString();
+				var str = query_responses[0].toString();
                         if(str=="") {
                             console.log("query no result.");
-                            res.status(400).json({error:"此用户不存在"});
+                            res.status(400).json({error:"您当前没有房屋注册！"});
                         }
                         else{
                             result = JSON.parse(str);
-                            console.log("The result is ",result);
-                            console.log(result.name+":"+result.company+":"+result.phone+":"+result.credit+":"+result.password);
-                            console.log(result.password == password);
-                            if(result.password!=password){
-                                res.status(400).json({error:"密码错误"});
+                            var length=result.length;
+                            console.log("The length of result is :",result.length);
+                           /* var i;
+                            for(i=0;i<length;i++){
+
                             }
-                            else{
-                                // redirect to user's homepage by type.
-                                console.log("redirect to personInfo.");
-                                if(type == "customer"){
-                                	res.render('rent',{result:result,id:idcard});
-                                }
-                                else
-                                	res.render('ownerInfo',{result:result,id:idcard});                           
+                            */
+                            console.log("The result is :",result[0].Key);  //get the result
+                            console.log(result[0].Record.id+":"+result[0].Record.area+":"+result[0].Record.status+":"+result[0].Record.owner+":"+result[0].Record.user);
+                           	console.log("redirect to listHouse.pug.");
+                        	//res.render('listHouse',{result:result});
+                        	//res.render('listHouse',{result:result[0].Record});  
+                        	res.render('listOwnerHouse',{result:result,length:length});                          
                             }
-                        }
                 }
 	} else {
 		console.log("No payloads were returned from query");
