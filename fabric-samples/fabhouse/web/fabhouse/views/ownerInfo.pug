@@ -35,6 +35,6 @@ block body
                                 input#inputUser(type='text', placeholder='使用者',name='user')
                                         
                                 button.btn.btn-lg.btn-primary.btn-block(type='submit') 注册房屋
-                    
-                        form#queryhouseform(action='/queryhousebyownerService?name=Amy', method='post')
+                        -var name=result.name
+                        form#queryhouseform(action='/queryhousebyownerService?name='+name, method='post')
                                 button.btn.btn-lg.btn-primary.btn-block(type='submit') 查询房屋
