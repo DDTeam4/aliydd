@@ -97,7 +97,7 @@ Fabric_Client.newDefaultKeyValueStore({ path: store_path
                            	console.log("redirect to listHouse.pug.");
                         	//res.render('listHouse',{result:result});
                         	//res.render('listHouse',{result:result[0].Record});  
-                        	res.render('listHouse',{result:result,length:length});                          
+                        	res.render('listOwnerHouse',{result:result,length:length});                          
                             }
                 }
 	} else {

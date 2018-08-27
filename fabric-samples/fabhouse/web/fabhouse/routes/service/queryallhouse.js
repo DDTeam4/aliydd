@@ -94,7 +94,7 @@ Fabric_Client.newDefaultKeyValueStore({ path: store_path
                            	console.log("redirect to lease.pug.");
                         	//res.render('listHouse',{result:result});
                         	//res.render('listHouse',{result:result[0].Record});  
-                        	res.render('listHouse',{result:result,length:length});                          
+                        	res.render('listAllHouse',{result:result,length:length});                          
                             }
                 }
 	} else {
