@@ -161,3 +161,11 @@ function tomyrent(){
     var idcard = $(".userid").text();
     $.StandardPost("/myrent",{name:name,idcard:idcard}); 
 }
+
+function toownerrent(){
+    console.log("to ownerrent()..."); 
+    var name = $(".username").text();
+    var idcard = $(".userid").text();
+    $.StandardPost("/ownerrent",{name:name,idcard:idcard}); 
+}
+
