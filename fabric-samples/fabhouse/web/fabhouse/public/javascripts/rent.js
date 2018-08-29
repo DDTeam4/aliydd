@@ -71,6 +71,32 @@ $(document).ready(function(){
 	*/
 });
 
+function createInfo(){
+    console.log("createInfo()...");
+
+    var infoid = $("#infoid").val();
+    var name = $("#name").val();
+    var description = $("#description").val();
+    var address = $("#address").val();
+    var credit = $("#credit").val();
+    var district = $("#district").val();
+    var duration = $("#duration").val();
+    var gender = $("#gender").val();
+    var ownerid = $("#ownerid").val();
+    
+    console.log(infoid+":"+name+":"+description+":"+address+":"+credit+":"+district+":"+duration+":"+gender+":"+ownerid);
+
+    $.post("/createInfoService",{"infoid":infoid, "name":name, "description":description, "address":address, "credit":credit, "district":district, "duration":duration, "gender":gender, "ownerid":ownerid},function(data){
+    	console.log('rent house success');
+    	 window.location.href="/rentsuccess"; 
+        }
+    ).fail(function(jqXHR,textStatus,errorThrown){
+                     console.log("error");
+                     alert(jqXHR.responseText);
+              });
+
+}
+
 function queryInfo(){
     console.log("queryInfo()...");
 /*    var area='all',time='all',gender='all';
@@ -101,6 +127,7 @@ function submitPrice(){
     console.log(price);
     $("#priceform").submit();
 }
+
 
 function want(index){
     console.log("want()..."+index);

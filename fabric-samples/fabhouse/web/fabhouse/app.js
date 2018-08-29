@@ -11,6 +11,7 @@ var signuphouseRouter = require('./routes/router/signuphouse');
 var signinRouter = require('./routes/router/signin');
 var customerRouter = require('./routes/router/customer');
 var ownerRouter = require('./routes/router/owner');
+var rentsuccessRouter = require('./routes/router/rentsuccess');
 var changehouseRouter = require('./routes/router/changehouse');
 var leaseRouter = require('./routes/router/lease');
 var listHouseRouter = require('./routes/router/listhouse');
@@ -31,6 +32,7 @@ var queryAllContractRouter = require('./routes/service/queryallcontract');
 var queryRequestContractRouter = require('./routes/service/queryrequestcontract');
 var queryConfirmContractRouter = require('./routes/service/queryconfirmcontract');
 var queryFinishContractRouter = require('./routes/service/queryfinishcontract');
+var createInfoServiceRouter = require('./routes/service/createinfo');
 
 var app = express();
 
@@ -55,8 +57,10 @@ app.use('/owner',ownerRouter);
 app.use('/changehouse',changehouseRouter);
 app.use('/lease',leaseRouter);
 app.use('/listHouse',listHouseRouter);
+app.use('/rentsuccess',rentsuccessRouter);
 app.use('/rent',rentRouter);
 app.use('/myrent',myRentRouter);
+
 
 app.use('/signupService',signupServiceRouter);
 app.use('/signuphouseService',signuphouseServiceRouter);
@@ -70,6 +74,7 @@ app.use('/allcontract',queryAllContractRouter);
 app.use('/requestcontract',queryRequestContractRouter);
 app.use('/confirmcontract',queryConfirmContractRouter);
 app.use('/finishcontract',queryFinishContractRouter);
+app.use('/createInfoService',createInfoServiceRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
