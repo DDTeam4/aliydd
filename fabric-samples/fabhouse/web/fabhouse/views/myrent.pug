@@ -1,0 +1,80 @@
+extends layout
+
+append styles
+    link(rel='stylesheet', href='/stylesheets/myrent.css')
+
+append scripts
+    script(src='/javascripts/jquery.js', type='text/javascript')
+    
+    script(src='/javascripts/myrent.js', type='text/javascript')
+
+block content
+    span.username(style="display:none") #{name}
+    span.userid(style="display:none") #{idcard}
+    nav.navbar.fixed-top.navbar-light.bg-light
+        a.navbar-brand(href="/") FabHouse
+        div.welcome(style="font-color:gray") 欢迎您， #{name}
+        button.btn.btn-outline-info.myrent(onclick="torent()") 搜索房源
+
+      
+    .container
+        div#title
+            span.heading.active.borderr 全部记录
+            span.heading.borderr 申请中
+            span.heading.borderr 待确认
+            span.heading 已成交
+
+        div#tabhead
+            span.tabh.long 房屋信息 
+            span.tabh.normal 签约日期
+            span.tabh.normal 出价信息
+            span.tabh.normal 状态
+            span.tabh.normal 指定操作
+        
+        div#mycontent
+            div.rentitem
+                ul.ulitem
+                    li.lihouse.lidetail
+                        div.divhouse
+                            div.name 整租塔子湖锦绣家园幽兰苑
+                            div.description 1室0厅0卫10㎡
+                            div.address 后湖 塔子湖锦绣家园幽兰苑
+                    li.lidate.lidetail
+                        div.date.center 2018-08-27
+                    li.liprice.lidetail
+                        div.price.center 1200
+                    li.listatus.lidetail
+                        div.status.center 申请中
+                    li.lioperator.lidetail
+                        div.link.center 取消申请
+            div.rentitem
+                ul.ulitem
+                    li.lihouse.lidetail
+                        div.divhouse
+                            div.name 幽兰苑1室0厅0卫
+                            div.description 1室0厅0卫10㎡
+                            div.address 后湖 塔子湖锦绣家园幽兰苑
+                    li.lidate.lidetail
+                        div.date.center 2018-08-28
+                    li.liprice.lidetail
+                        div.price.center 1200
+                    li.listatus.lidetail
+                        div.status.center 待确认
+                    li.lioperator.lidetail
+                        div.link.center 查看附加信息
+            div.rentitem
+                ul.ulitem
+                    li.lihouse.lidetail
+                        div.divhouse
+                            div.name 幽兰苑
+                            div.description 1室0厅0卫10㎡
+                            div.address 后湖 塔子湖锦绣家园幽兰苑
+                    li.lidate.lidetail
+                        div.date.center 2018-08-28 
+                    li.liprice.lidetail
+                        div.price.center 900
+                    li.listatus.lidetail
+                        div.status.center 已成交
+                    li.lioperator.lidetail
+                        div.link.center 查看合约
+

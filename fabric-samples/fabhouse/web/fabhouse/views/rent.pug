@@ -10,11 +10,12 @@ append scripts
     script(src='/javascripts/rent.js', type='text/javascript')
 
 block content
-
+    span.username(style="display:none") #{result.name}
+    span.userid(style="display:none") #{result.idcard}
     nav.navbar.fixed-top.navbar-light.bg-light
         a.navbar-brand(href="/") FabHouse
         div.welcome 欢迎您， #{result.name}
-        button.btn.btn-outline-info.myrent 我的租房
+        button.myrent.btn.btn-outline-info(onclick="tomyrent()") 我的租房
 
       
     .container
@@ -68,6 +69,7 @@ block content
                     dt 已选条件：
                     dd.select-no 暂时没有选择过滤条件
         button.btn.btn-primary(style="position: relative;left: 800px;top: -10px;",onclick="queryInfo()") 开始查找
+
 
         div#houseContent
 

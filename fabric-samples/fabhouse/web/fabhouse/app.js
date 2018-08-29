@@ -15,6 +15,8 @@ var rentsuccessRouter = require('./routes/router/rentsuccess');
 var changehouseRouter = require('./routes/router/changehouse');
 var leaseRouter = require('./routes/router/lease');
 var listHouseRouter = require('./routes/router/listhouse');
+var rentRouter = require('./routes/router/rent');
+var myRentRouter = require('./routes/router/myrent')
 
 var signupServiceRouter = require('./routes/service/signup');
 var signuphouseServiceRouter = require('./routes/service/signuphouse');
@@ -52,6 +54,9 @@ app.use('/changehouse',changehouseRouter);
 app.use('/lease',leaseRouter);
 app.use('/listHouse',listHouseRouter);
 app.use('/rentsuccess',rentsuccessRouter);
+app.use('/rent',rentRouter);
+app.use('/myrent',myRentRouter);
+
 
 app.use('/signupService',signupServiceRouter);
 app.use('/signuphouseService',signuphouseServiceRouter);
