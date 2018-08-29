@@ -4,9 +4,10 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', function(req, res, next) {
   //res.render('index', { title: 'Express' });
-    var name = req.query.name;
+   
     var idcard = req.query.idcard;
-    res.render('lease1', {name: name,idcard:idcard});
+    var status = req.query.status;
+    res.render('lease1', {idcard:idcard,status:status});
 });
 
 module.exports = router;

@@ -18,10 +18,13 @@ block body
                                                                 li
                                                                         a(href="/") 主页
                                                                 li.active
-                                                                        a(href="/lease1?name="+name+",idcard="+idcard) 租房合约
+                                                                        a(href="/lease1") 租房合约
                                                                 li
                                                                         a(href="#") 关于
  
         .container
                 div.form-signin
-                                button.btn.btn-lg.btn-primary.btn-block(onclick="toownerrent()") 查看租房合约
+                    -var idcard=idcard
+                    -var status=status
+                    form#querycontractform(action='/queryOwnerContractService?ownerid='+idcard+'&status='+status, method='post')
+                    button.btn.btn-lg.btn-primary.btn-block(type='submit') 查看租房合约

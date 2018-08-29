@@ -99,17 +99,7 @@ function createInfo(){
 
 function queryInfo(){
     console.log("queryInfo()...");
-/*    var area='all',time='all',gender='all';
-    if($("#selectA a").text()!=""){
-//        area =$("#selectA a").text(); 
-    }
-    if($("#selectB a").text()!=""){
-//        time =$("#selectB a").text(); 
-    }
-    if($("#selectC a").text()!=""){
-//        gender =$("#selectC a").text(); 
-    }
-*/
+
     var district = $("#select1 dd").index($("#select1 .selected"));
     var duration = $("#select2 dd").index($("#select2 .selected"));
     var gender = $("#select3 dd").index($("#select3 .selected"));
@@ -118,8 +108,20 @@ function queryInfo(){
     $.post("/queryInfoService",{"district":district, "duration":duration, "gender":gender},function(data){
                 $("#houseContent").html(data);
                 });
-//    console.log(area+":"+time+":"+gender);
 }
+
+/*function queryOwnerContract(){
+    console.log("queryOwnerContract()...");
+
+    var district = $("#select1 dd").index($("#select1 .selected"));
+    var duration = $("#select2 dd").index($("#select2 .selected"));
+    var gender = $("#select3 dd").index($("#select3 .selected"));
+    console.log(district+":"+duration+":"+gender);
+
+    $.post("/queryOwnerContractService",{"ownerid":ownerid, "status":status},function(data){
+                $("#houseContent").html(data);
+                });
+}*/
 
 function submitPrice(){
     console.log("submitPrice()...");

@@ -353,9 +353,9 @@ func (s *SmartContract) queryAllHouses(APIstub shim.ChaincodeStubInterface) sc.R
 }
 
 func (s *SmartContract) queryAllInfos(APIstub shim.ChaincodeStubInterface) sc.Response {
-//infos id are from 10000 to 19999
-	startKey := "10000"
-	endKey := "19999"
+//infos id are from 2000 to 2999
+	startKey := "2000"
+	endKey := "2999"
 
 	resultsIterator, err := APIstub.GetStateByRange(startKey, endKey)
 	if err != nil {
@@ -370,8 +370,8 @@ func (s *SmartContract) queryAllInfos(APIstub shim.ChaincodeStubInterface) sc.Re
 
 func (s *SmartContract) queryAllContracts(APIstub shim.ChaincodeStubInterface) sc.Response {
 //infos id are from 100001 to 199999
-	startKey := "100001"
-	endKey := "199999"
+	startKey := "3000"
+	endKey := "3999"
 
 	resultsIterator, err := APIstub.GetStateByRange(startKey, endKey)
 	if err != nil {
