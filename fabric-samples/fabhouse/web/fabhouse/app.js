@@ -27,6 +27,10 @@ var queryhouseServiceRouter = require('./routes/service/queryallhouse');
 var queryhousebyownerServiceRouter = require('./routes/service/queryhousebyowner');
 var queryoneServiceRouter = require('./routes/service/queryperson');
 var queryInfoServiceRouter = require('./routes/service/queryinfo');
+var queryAllContractRouter = require('./routes/service/queryallcontract');
+var queryRequestContractRouter = require('./routes/service/queryrequestcontract');
+var queryConfirmContractRouter = require('./routes/service/queryconfirmcontract');
+var queryFinishContractRouter = require('./routes/service/queryfinishcontract');
 
 var app = express();
 
@@ -62,6 +66,10 @@ app.use('/queryhouseService',queryhouseServiceRouter);
 app.use('/queryhousebyownerService',queryhousebyownerServiceRouter);
 app.use('/queryoneService',queryoneServiceRouter);
 app.use('/queryInfoService',queryInfoServiceRouter);
+app.use('/allcontract',queryAllContractRouter);
+app.use('/requestcontract',queryRequestContractRouter);
+app.use('/confirmcontract',queryConfirmContractRouter);
+app.use('/finishcontract',queryFinishContractRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
