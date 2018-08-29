@@ -1,0 +1,48 @@
+extends layout
+
+append styles
+    link(rel='stylesheet', href='/stylesheets/myrent.css')
+
+append scripts
+    script(src='/javascripts/jquery.js', type='text/javascript')
+    script(src='/javascripts/rent.js', type='text/javascript')
+
+block content
+    span.username(style="display:none") #{name}
+    span.userid(style="display:none") #{idcard}
+    nav.navbar.fixed-top.navbar-light.bg-light
+        a.navbar-brand(href="/") FabHouse
+        div.welcome(style="font-color:gray") 欢迎您， #{result[0].Record.ownerid}
+
+      
+    .container
+        div#title
+            span.heading.active.borderr 全部记录
+            span.heading.borderr 待处理
+            span.heading 已成交
+
+        div#tabhead
+            span.tabh.long 房屋信息 
+            span.tabh.normal 签约日期
+            span.tabh.normal 出价信息
+            span.tabh.normal 状态
+            span.tabh.normal 指定操作
+
+        div#mycontent
+         each item,index in result
+          li(id="li"+index)
+            div.rentitem
+                ul.ulitem
+                    li.lihouse.lidetail
+                        div.divhouse
+                            div.name item.Record.housename
+                            div.description item.Record.housedescription
+                            div.address item.Record.houseaddress
+                    li.lidate.lidetail
+                        div.date.center item.Record.time
+                    li.liprice.lidetail
+                        div.price.center item.Record.price
+                    li.listatus.lidetail
+                        div.status.center item.Record.status
+                    li.lioperator.lidetail
+                        div.link.center 查看附加信息

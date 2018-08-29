@@ -14,9 +14,11 @@ var ownerRouter = require('./routes/router/owner');
 var rentsuccessRouter = require('./routes/router/rentsuccess');
 var changehouseRouter = require('./routes/router/changehouse');
 var leaseRouter = require('./routes/router/lease');
+var lease1Router = require('./routes/router/lease1');
 var listHouseRouter = require('./routes/router/listhouse');
 var rentRouter = require('./routes/router/rent');
 var myRentRouter = require('./routes/router/myrent')
+var ownerRentRouter = require('./routes/router/ownerrent')
 
 var signupServiceRouter = require('./routes/service/signup');
 var signuphouseServiceRouter = require('./routes/service/signuphouse');
@@ -28,6 +30,7 @@ var queryhouseServiceRouter = require('./routes/service/queryallhouse');
 var queryhousebyownerServiceRouter = require('./routes/service/queryhousebyowner');
 var queryoneServiceRouter = require('./routes/service/queryperson');
 var queryInfoServiceRouter = require('./routes/service/queryinfo');
+var queryOwnerContractServiceRouter = require('./routes/service/querycontractbyowner');
 var queryAllContractRouter = require('./routes/service/queryallcontract');
 var queryRequestContractRouter = require('./routes/service/queryrequestcontract');
 var queryConfirmContractRouter = require('./routes/service/queryconfirmcontract');
@@ -57,11 +60,12 @@ app.use('/customer',customerRouter);
 app.use('/owner',ownerRouter);
 app.use('/changehouse',changehouseRouter);
 app.use('/lease',leaseRouter);
+app.use('/lease1',lease1Router);
 app.use('/listHouse',listHouseRouter);
 app.use('/rentsuccess',rentsuccessRouter);
 app.use('/rent',rentRouter);
 app.use('/myrent',myRentRouter);
-
+app.use('/ownerrent',ownerRentRouter);
 
 app.use('/signupService',signupServiceRouter);
 app.use('/signuphouseService',signuphouseServiceRouter);
@@ -71,6 +75,7 @@ app.use('/queryhouseService',queryhouseServiceRouter);
 app.use('/queryhousebyownerService',queryhousebyownerServiceRouter);
 app.use('/queryoneService',queryoneServiceRouter);
 app.use('/queryInfoService',queryInfoServiceRouter);
+app.use('/queryOwnerContractService',queryOwnerContractServiceRouter);
 app.use('/allcontract',queryAllContractRouter);
 app.use('/requestcontract',queryRequestContractRouter);
 app.use('/confirmcontract',queryConfirmContractRouter);

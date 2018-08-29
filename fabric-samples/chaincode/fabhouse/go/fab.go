@@ -353,7 +353,7 @@ func (s *SmartContract) queryAllHouses(APIstub shim.ChaincodeStubInterface) sc.R
 }
 
 func (s *SmartContract) queryAllInfos(APIstub shim.ChaincodeStubInterface) sc.Response {
-//infos id are from 10000 to 19999
+//infos id are from 2000 to 2999
 	startKey := "2000"
 	endKey := "2999"
 
