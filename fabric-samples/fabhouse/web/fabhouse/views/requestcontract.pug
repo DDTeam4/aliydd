@@ -9,18 +9,19 @@ append scripts
     script(src='/javascripts/myrent.js', type='text/javascript')
 
 block content
-    div.rentitem
-        ul.ulitem
-            li.lihouse.lidetail
-                div.divhouse
-                    div.name 整租塔子湖锦绣家园幽兰苑
-                    div.description 1室0厅0卫10㎡
-                    div.address 后湖 塔子湖锦绣家园幽兰苑
-            li.lidate.lidetail
-                div.date.center 2018-08-27
-            li.liprice.lidetail
-                div.price.center 1200
-            li.listatus.lidetail
-                div.status.center 申请中
-            li.lioperator.lidetail
-                div.link.center 取消申请
+    each item,index in result
+        div.rentitem(id="div"+index)
+            ul.ulitem
+                li.lihouse.lidetail
+                    div.divhouse
+                        div.name=item.Record.housename
+                        div.description=item.Record.housedescription
+                        div.address=item.Record.houseaddress
+                li.lidate.lidetail
+                    div.date.center=item.Record.time
+                li.liprice.lidetail
+                    div.price.center=item.Record.price
+                li.listatus.lidetail
+                    div.status.center 申请中
+                li.lioperator.lidetail
+                    div.link.center 取消申请

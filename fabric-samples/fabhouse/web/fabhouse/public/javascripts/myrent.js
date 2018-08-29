@@ -34,26 +34,28 @@ function torent(){
 
 function getContract(index){
     console.log("get contract()...");
+    var customerid = $(".userid").text();
+    console.log(customerid);
     $("#title span").removeClass("active");
     $("#title span:eq("+index+")").addClass("active");
     switch(index){
         case 0:
-            $.post("/allcontract",{},function(data){
+            $.post("/allcontract",{customerid:customerid},function(data){
                         $("#mycontent").html(data);
                         });
             break;
         case 1:
-            $.post("/requestcontract",{},function(data){
+            $.post("/requestcontract",{customerid:customerid},function(data){
                         $("#mycontent").html(data);
                         });
             break;
         case 2:
-            $.post("/confirmcontract",{},function(data){
+            $.post("/confirmcontract",{customerid:customerid},function(data){
                         $("#mycontent").html(data);
                         });
             break;
         case 3:
-            $.post("/finishcontract",{},function(data){
+            $.post("/finishcontract",{customerid:customerid},function(data){
                         $("#mycontent").html(data);
                         });
             break;

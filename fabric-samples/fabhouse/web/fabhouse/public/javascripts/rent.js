@@ -123,15 +123,30 @@ function queryInfo(){
 
 function submitPrice(){
     console.log("submitPrice()...");
-    var price = $("#price").val();
-    console.log(price);
-    $("#priceform").submit();
+    price = $("#price").val();
+    var mydate = new Date();
+    time = mydate.toLocaleDateString();
+    status = 1;
+    console.log(price+housename+time+status);
+    $.post('/createcontract',{contractid:contractid,housename:housename,housedescription:housedescription,houseaddress:houseaddress,ownerid:ownerid,customerid:customerid,status:status,price:price,time:time},function (data){
+                $(".closemodal").click();
+                console.log("callback() success");
+                alert("申请成功！具体信息请到我的租房查看");
+                });
+
 }
 
 
 function want(index){
     console.log("want()..."+index);
     console.log($("#li"+index+" .infoid").html());
+    housedescription = $("#li"+index+" .description").text();
+    housename = $("#li"+index+" .name").text();
+    houseaddress =$("#li"+index+" .address").text();
+    customerid = $(".userid").text();
+    contractid = $("#li"+index+" .contractid").text();
+    ownerid = $("#li"+index+" .ownerid").text();
+    console.log(contractid+":"+housename+":"+housedescription+":"+houseaddress+":"+customerid+":"+ownerid);
 }
 
 $.extend({

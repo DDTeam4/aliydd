@@ -14,15 +14,18 @@ block content
     .container2
         ul#houseList
             div.header 房源信息    
+            - var contractid = 3001
             each item,index in result
                 li(id="li"+index)
                     div.content-panel
+                        span.contractid(style="display:none")= contractid+index
+
+                        span.ownerid(style="display:none")=item.Record.ownerid
                         div.name=item.Record.name
                         div.description=item.Record.description
                         div.address=item.Record.address
                         div.credit=item.Record.credit+"蚂蚁分"
                         span.infoid(style="display:none")=item.Record.infoid
-                        span.ownerid(style="display:none")=item.Record.OwnerId
                         button.want.btn.btn-danger(data-toggle="modal" data-target="#exampleModal" onclick="want("+index+")") 我有意向
 
 
@@ -41,5 +44,5 @@ block content
                             input.form-control#price(type='text', placeholder="请输入你认为合适的价格",required='true')
                             small.form-text.text-muted 提交的价格会首先进行系统的匹配，请合理出价
                 .modal-footer
-                    button.btn.btn-secondary(type='button', data-dismiss='modal') 取消申请
+                    button.btn.btn-secondary.closemodal(type='button', data-dismiss='modal') 取消申请
                     button.btn.btn-primary(type='button' onclick='submitPrice()') 提交申请
