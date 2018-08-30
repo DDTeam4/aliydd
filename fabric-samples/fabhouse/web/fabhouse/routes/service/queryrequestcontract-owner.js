@@ -4,9 +4,9 @@ var router = express.Router();
 router.post('/', function(req, res, next) {
 
 var customerid= req.body.customerid;
-var status = "-1";
+var status = "1";
 
-console.log(customerid+":"+status);
+console.log(customerid);
 var result;
 
 var Fabric_Client = require('fabric-client');
@@ -55,9 +55,8 @@ Fabric_Client.newDefaultKeyValueStore({ path: store_path
 	const request = {
 		//targets : --- letting this default to the peers assigned to the channel
 		chaincodeId: 'fabhouse',
-		fcn: 'queryCustomerContract',
-		//args: ["0001",status]   //this args should be ["Amy"], not ['Amy']
-		args:[customerid,status]
+		fcn: 'queryOwnerContract',
+		args: [customerid,status]   //this args should be ["Amy"], not ['Amy']
 	};
 
 	// send the query proposal to the peer
@@ -79,7 +78,7 @@ Fabric_Client.newDefaultKeyValueStore({ path: store_path
                 result = JSON.parse(str);
                 var length = result.length;
                 console.log("length: "+length);
-                res.render("allcontract",{result:result,length:length});
+                res.render("requestcontract-owner",{result:result,length:length});
             }
 		}
 	} else {

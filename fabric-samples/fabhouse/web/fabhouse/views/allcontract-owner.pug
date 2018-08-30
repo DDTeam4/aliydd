@@ -30,7 +30,7 @@ block content
                     li.listatus.lidetail
                         div.status.center 申请中
                     li.lioperator.lidetail
-                        div.link.center(onclick="cancel("+index+")") 取消申请
+                        div.link.center(onclick="ownerconfirm()") 处理
                 else if item.Record.status == "2"
                     li.listatus.lidetail
                         div.status.center 待确认

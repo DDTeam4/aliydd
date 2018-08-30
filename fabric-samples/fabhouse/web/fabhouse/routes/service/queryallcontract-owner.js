@@ -55,7 +55,7 @@ Fabric_Client.newDefaultKeyValueStore({ path: store_path
 	const request = {
 		//targets : --- letting this default to the peers assigned to the channel
 		chaincodeId: 'fabhouse',
-		fcn: 'queryCustomerContract',
+		fcn: 'queryOwnerContract',
 		//args: ["0001",status]   //this args should be ["Amy"], not ['Amy']
 		args:[customerid,status]
 	};
@@ -79,7 +79,7 @@ Fabric_Client.newDefaultKeyValueStore({ path: store_path
                 result = JSON.parse(str);
                 var length = result.length;
                 console.log("length: "+length);
-                res.render("allcontract",{result:result,length:length});
+                res.render("allcontract-owner",{result:result,length:length});
             }
 		}
 	} else {

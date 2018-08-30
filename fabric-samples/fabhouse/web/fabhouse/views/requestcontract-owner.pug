@@ -23,22 +23,7 @@ block content
                     div.date.center=item.Record.time
                 li.liprice.lidetail
                     div.price.center=item.Record.price
-                if item.Record.status == "0"
-                    li.listatus.lidetail
-                        div.status.center 已失效
-                else if item.Record.status == "1"
-                    li.listatus.lidetail
-                        div.status.center 申请中
-                    li.lioperator.lidetail
-                        div.link.center(onclick="cancel("+index+")") 取消申请
-                else if item.Record.status == "2"
-                    li.listatus.lidetail
-                        div.status.center 待确认
-                    li.lioperator.lidetail
-                        div.link.center 查看附加信息
-                else if item.Record.status == "3"
-                    li.listatus.lidetail
-                        div.status.center 已成交
-                    li.lioperator.lidetail
-                        div.link.center 查看合约
-
+                li.listatus.lidetail
+                    div.status.center 申请中
+                li.lioperator.lidetail
+                    div.link.center(onclick="ownerconfirm()") 处理

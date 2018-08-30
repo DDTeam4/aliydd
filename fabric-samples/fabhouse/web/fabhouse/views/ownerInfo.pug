@@ -9,6 +9,8 @@ append styles
 
 
 block body
+        span.username(style="display:none") #{result.name}
+        span.userid(style="display:none") #{result.idcard}
         -var name=result.name
         -var idcard=result.idcard
         .site-wrapper
@@ -26,8 +28,6 @@ block body
                                                                 li
                                                                         a(href="/lease") 全部房屋列表
                                                                 li
-                                                                        a(href="/lease1?idcard="+idcard+"&status=-1") 租房合约
-                                                                li
                                                                         a(href="#") 关于
  
         .container
@@ -44,5 +44,5 @@ block body
                         -var name=result.name
                         form#queryhouseform(action='/queryhousebyownerService?name='+name, method='post')
                                 button.btn.btn-lg.btn-primary.btn-block(type='submit') 查询房屋
-                        form#querycontractform(action='/queryOwnerContractService?ownerid='+idcard+'&status=-1', method='post')
-                                button.btn.btn-lg.btn-primary.btn-block(type='submit') 查看租房合约
+                       
+                        button.btn.btn-lg.btn-primary.btn-block(onclick="toownerrent()") 查看租房合约
