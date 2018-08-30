@@ -11,6 +11,7 @@ append scripts
 block content
     each item,index in result
         div.rentitem(id="div"+index)
+            span.contractid(style="display:none")= item.Record.contractid
             ul.ulitem
                 li.lihouse.lidetail
                     div.divhouse
@@ -21,11 +22,14 @@ block content
                     div.date.center=item.Record.time
                 li.liprice.lidetail
                     div.price.center=item.Record.price
-                if item.Record.status == "1"
+                if item.Record.status == "0"
+                    li.listatus.lidetail
+                        div.status.center 已失效
+                else if item.Record.status == "1"
                     li.listatus.lidetail
                         div.status.center 申请中
                     li.lioperator.lidetail
-                        div.link.center 取消申请
+                        div.link.center(onclick="cancel("+index+")") 取消申请
                 else if item.Record.status == "2"
                     li.listatus.lidetail
                         div.status.center 待确认

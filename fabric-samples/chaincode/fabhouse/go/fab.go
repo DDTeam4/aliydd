@@ -69,7 +69,7 @@ type Info struct {
     District string `json:"district"`
     Duration string `json:"duration"`
     Gender string `json:"gender"`
-    OwnerId string `json:"ownerid"`
+    InfoownerId string `json:"infoownerid"`
 }
 
 // Define the Contract structure. Structure tags are used by encoding/json library
@@ -83,6 +83,7 @@ type Contract struct {
     Status string `json:"status"`
     Price string `json:"price"`
     Time string `json:"time"`
+    Additional string `json:"additional"`
 }
 
 /*
@@ -137,6 +138,8 @@ func (s *SmartContract) Invoke(APIstub shim.ChaincodeStubInterface) sc.Response 
 		return s.changeToUnrent(APIstub, args)
 	}else if function == "changeContractStatusById" {
 		return s.changeContractStatusById(APIstub, args)
+	}else if function == "addContractAdditionalById" {
+		return s.addContractAdditionalById(APIstub, args)
 	}else if function == "queryByOwner" {
 		return s.queryByOwner(APIstub, args)
 	}else if function == "queryInfo" {
@@ -202,7 +205,7 @@ func (s *SmartContract) createInfo(APIstub shim.ChaincodeStubInterface, args []s
 	}
 
     fmt.Printf("before createInfo()")
-	var info = Info{InfoId: args[0], Name: args[1], Description: args[2], Address: args[3], Credit: args[4], District: args[5], Duration: args[6], Gender: args[7], OwnerId:args[8]}
+	var info = Info{InfoId: args[0], Name: args[1], Description: args[2], Address: args[3], Credit: args[4], District: args[5], Duration: args[6], Gender: args[7], InfoownerId:args[8]}
 
     fmt.Printf("in createInfo()...")
 	infoAsBytes, _ := json.Marshal(info)
@@ -213,11 +216,11 @@ func (s *SmartContract) createInfo(APIstub shim.ChaincodeStubInterface, args []s
 
 func (s *SmartContract) createContract(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
 
-	if len(args) != 9{
-		return shim.Error("Incorrect number of arguments. Expecting 9")
+	if len(args) != 10{
+		return shim.Error("Incorrect number of arguments. Expecting 10")
 	}
 
-	var contract = Contract{ContractId: args[0], HouseName: args[1], HouseDescription: args[2], HouseAddress: args[3], OwnerId: args[4], CustomerId: args[5], Status: args[6], Price: args[7], Time:args[8]}
+	var contract = Contract{ContractId: args[0], HouseName: args[1], HouseDescription: args[2], HouseAddress: args[3], OwnerId: args[4], CustomerId: args[5], Status: args[6], Price: args[7], Time:args[8], Additional: args[9]}
 
     fmt.Printf("in createContract()...")
 	contractAsBytes, _ := json.Marshal(contract)
@@ -315,6 +318,25 @@ func (s *SmartContract) changeContractStatusById(APIstub shim.ChaincodeStubInter
 	json.Unmarshal(contractAsBytes, &contract)
 
     contract.Status = args[1]
+
+	contractAsBytes, _ = json.Marshal(contract)
+	APIstub.PutState(args[0], contractAsBytes)
+
+	return shim.Success(nil)
+}
+
+func (s *SmartContract) addContractAdditionalById(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
+
+	if len(args) != 2 {
+		return shim.Error("Incorrect number of arguments. Expecting 2")
+	}
+
+	contractAsBytes, _ := APIstub.GetState(args[0])
+	contract := Contract{}
+
+	json.Unmarshal(contractAsBytes, &contract)
+
+    contract.Additional = args[1]
 
 	contractAsBytes, _ = json.Marshal(contract)
 	APIstub.PutState(args[0], contractAsBytes)

@@ -129,8 +129,9 @@ function submitPrice(){
     var mydate = new Date();
     time = mydate.toLocaleDateString();
     status = 1;
+    additional = "";
     console.log(price+housename+time+status);
-    $.post('/createcontract',{contractid:contractid,housename:housename,housedescription:housedescription,houseaddress:houseaddress,ownerid:ownerid,customerid:customerid,status:status,price:price,time:time},function (data){
+    $.post('/createcontract',{contractid:contractid,housename:housename,housedescription:housedescription,houseaddress:houseaddress,ownerid:ownerid,customerid:customerid,status:status,price:price,time:time,additional:additional},function (data){
                 $(".closemodal").click();
                 console.log("callback() success");
                 alert("申请成功！具体信息请到我的租房查看");

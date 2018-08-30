@@ -37,6 +37,7 @@ var queryConfirmContractRouter = require('./routes/service/queryconfirmcontract'
 var queryFinishContractRouter = require('./routes/service/queryfinishcontract');
 var createInfoServiceRouter = require('./routes/service/createinfo');
 var createContract = require('./routes/service/createcontract');
+var cancelContract = require('./routes/service/cancelcontract');
 
 var app = express();
 
@@ -82,6 +83,7 @@ app.use('/confirmcontract',queryConfirmContractRouter);
 app.use('/finishcontract',queryFinishContractRouter);
 app.use('/createInfoService',createInfoServiceRouter);
 app.use('/createcontract',createContract);
+app.use('/cancelcontract',cancelContract);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -62,3 +62,38 @@ function getContract(index){
     }
         
 }
+
+
+function cancel(index){
+    console.log("cancel()..."+index);
+    var cid = $("#div"+index+" .contractid").text();
+    console.log(cid);
+    var flag = confirm("确定取消后将无法撤销！");
+    console.log(flag);
+
+    if(flag){
+        $.post("/cancelcontract",{contractid:cid},function(data){
+            alert("取消订单成功！");
+            $("#div"+index).css("display","none");
+        });
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

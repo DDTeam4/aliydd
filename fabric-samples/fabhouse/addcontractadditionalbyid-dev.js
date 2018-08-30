@@ -66,10 +66,10 @@ var tx_id = null;
 			var request = {
 				//targets: let default to the peer assigned to the client
 				chaincodeId: 'fabhouse',
-				fcn: 'changeContractStatusById',
+				fcn: 'addContractAdditionalById',
 				//args: ['1001', '100', 'unrent', 'Amy', 'Amy'],
 
-				args: ['3001', '1'],
+				args: ['3002', '水电费自理，电费1元1度，水费1元1吨'],
 				chainId: 'mychannel',
 				txId: tx_id
 			};

@@ -11,6 +11,7 @@ var customerid = req.body.customerid;
 var status = req.body.status;
 var price = req.body.price;
 var time = req.body.time;
+var additional = req.body.additional;
 
 console.log(contractid+":"+name+":"+description+":"+address+":"+ownerid+":"+customerid+":"+status+":"+price+":"+time);
 
@@ -71,7 +72,7 @@ Fabric_Client.newDefaultKeyValueStore({ path: store_path
 		//targets: let default to the peer assigned to the client
 		chaincodeId: 'fabhouse',
 		fcn: 'createContract',
-		args: [contractid,name,description,address,ownerid,customerid,status,price,time],                   
+		args: [contractid,name,description,address,ownerid,customerid,status,price,time,additional],                   
 		chainId: 'mychannel',
 		txId: tx_id
 	};
