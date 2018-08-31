@@ -151,16 +151,59 @@ nav{
     width:90px;
 }
 
+.ownerinfo{
+    padding-bottom:20px;
+}
 
+.mhead{
+    font-size: 18px;
+    color: #EB5043;
+}
 
+.mbody{
+    border: 1px solid #e1e1e1;
+}
 
+.key{
+    color: #999999;
+    width: 120px;
+    display: inline-block;
+    padding: 10px;
+    padding-right: 30px;
+}
 
+.pscontent{
+    padding:10px;
+}
 
+.chead{
+    text-align: center;
+    font-size: 20px;
+    padding-bottom: 20px;
+    font-weight: bold;
+}
 
+.cinfo{
+    font-weight: bold;
+    text-decoration: underline;
+    padding-left: 5px;
+    padding-right: 5px;
+}
 
+.cstate{
+    font-weight: lighter;
+}
 
+.cterm{
+    padding: 10px;
+    padding-left: 0px;
+    font-size: 17px;
+}
 
-
+.ctime{
+    text-align: right;
+    padding: 20px;
+}
 
 
 

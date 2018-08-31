@@ -12,6 +12,8 @@ block content
     each item,index in result
         div.rentitem(id="div"+index)
             span.contractid(style="display:none")= item.Record.contractid
+            span.ownerid(style="display:none")= item.Record.ownerid
+            span.additional(style="display:none")= item.Record.additional
             ul.ulitem
                 li.lihouse.lidetail
                     div.divhouse
@@ -34,10 +36,12 @@ block content
                     li.listatus.lidetail
                         div.status.center 待确认
                     li.lioperator.lidetail
-                        div.link.center 查看附加信息
+                        span.checkowner(data-toggle="modal" data-target="#exampleModal")
+                        div.link.center.check(onclick="check("+index+")") 查看附加信息
                 else if item.Record.status == "3"
                     li.listatus.lidetail
                         div.status.center 已成交
                     li.lioperator.lidetail
-                        div.link.center 查看合约
-
+                        span.checkcontract(data-toggle="modal" data-target="#exampleModal")
+                        div.link.center(onclick="view("+index+")") 查看合约
+    

@@ -12,6 +12,8 @@ block content
     each item,index in result
         div.rentitem(id="div"+index)
             span.contractid(style="display:none")= item.Record.contractid
+            span.ownerid(style="display:none")= item.Record.ownerid
+            span.additional(style="display:none")= item.Record.additional
             ul.ulitem
                 li.lihouse.lidetail
                     div.divhouse

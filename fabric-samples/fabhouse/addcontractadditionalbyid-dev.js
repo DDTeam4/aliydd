@@ -69,7 +69,7 @@ var tx_id = null;
 				fcn: 'addContractAdditionalById',
 				//args: ['1001', '100', 'unrent', 'Amy', 'Amy'],
 
-				args: ['3002', '水电费自理，电费1元1度，水费1元1吨'],
+				args: ['3001', '水电费自理，电费1元1度，水费1元1吨'],
 				chainId: 'mychannel',
 				txId: tx_id
 			};

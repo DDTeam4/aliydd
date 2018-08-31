@@ -20,6 +20,7 @@ var rentRouter = require('./routes/router/rent');
 var myRentRouter = require('./routes/router/myrent')
 var ownerRentRouter = require('./routes/router/ownerrent')
 
+var viewContract = require('./routes/service/viewcontract')
 var signupServiceRouter = require('./routes/service/signup');
 var signuphouseServiceRouter = require('./routes/service/signuphouse');
 var signinServiceRouter = require('./routes/service/signin');
@@ -38,6 +39,8 @@ var queryFinishContractRouter = require('./routes/service/queryfinishcontract');
 var createInfoServiceRouter = require('./routes/service/createinfo');
 var createContract = require('./routes/service/createcontract');
 var cancelContract = require('./routes/service/cancelcontract');
+var getOwnerInfo = require('./routes/service/getownerinfo');
+var customerConfirmContract = require('./routes/service/customerconfirmcontract');
 
 var app = express();
 
@@ -67,6 +70,7 @@ app.use('/rentsuccess',rentsuccessRouter);
 app.use('/rent',rentRouter);
 app.use('/myrent',myRentRouter);
 app.use('/ownerrent',ownerRentRouter);
+app.use('/viewcontract',viewContract);
 
 app.use('/signupService',signupServiceRouter);
 app.use('/signuphouseService',signuphouseServiceRouter);
@@ -84,6 +88,8 @@ app.use('/finishcontract',queryFinishContractRouter);
 app.use('/createInfoService',createInfoServiceRouter);
 app.use('/createcontract',createContract);
 app.use('/cancelcontract',cancelContract);
+app.use('/getownerinfo',getOwnerInfo);
+app.use('/customerconfirmcontract',customerConfirmContract);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

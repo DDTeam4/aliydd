@@ -4,9 +4,9 @@ append styles
     link(rel='stylesheet', href='/stylesheets/myrent.css')
 
 append scripts
-    script(src='/javascripts/jquery.js', type='text/javascript')
-    
+    script(src='/javascripts/jquery.js', type='text/javascript') 
     script(src='/javascripts/myrent.js', type='text/javascript')
+    script(src='/javascripts/jQuery.print.min.js', type='text/javascript')
 
 block content
     span.username(style="display:none") #{name}
@@ -78,4 +78,7 @@ block content
                         div.status.center 已成交
                     li.lioperator.lidetail
                         div.link.center 查看合约
-
+        div#popup
+            #exampleModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
+                .modal-dialog(role='document')
+                    .modal-content

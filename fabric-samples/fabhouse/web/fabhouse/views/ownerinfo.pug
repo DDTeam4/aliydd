@@ -1,0 +1,36 @@
+span.ownerid(style="display:none")=result.idcard
+span.contractid(style="display:none")=contractid
+span.additional(style="display:none")=additional
+.modal-header
+    h5#exampleModalLabel.modal-title 房主信息和备注
+    button.close(type='button', data-dismiss='modal', aria-label='Close')
+      span(aria-hidden='true') ×
+.modal-body
+    div.ownerinfo
+        div.mhead 房主信息
+        div.mbody
+            div.term
+                span.key 姓名:
+                span.value=result.name
+            div.term
+                span.key 身份证号:
+                span.value=result.idcard
+            div.term
+                span.key 电话:
+                span.value=result.phone
+            div.term
+                span.key 公司:
+                span.value=result.company
+            div.term
+                span.key 信用分:
+                span.value=result.credit
+    div.ps
+        div.mhead 房主附加要求
+        div.mbody.pscontent=additional
+
+.modal-footer
+    button.btn.btn-secondary.closemodal(type='button', data-dismiss='modal' onclick="cancelcontract()") 取消申请
+    button.btn.btn-primary(type='button' onclick='confirmcontract()') 确认合同
+
+                            
+

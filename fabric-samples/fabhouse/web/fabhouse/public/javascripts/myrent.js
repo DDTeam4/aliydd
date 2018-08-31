@@ -79,15 +79,53 @@ function cancel(index){
     }
 }
 
+function check(index){
+    var oid = $("#div"+index+" .ownerid").text();
+    var cid = $("#div"+index+" .contractid").text();
+    var ps = $("#div"+index+" .additional").text();
+    console.log(oid+":"+cid+":"+ps);
+    $.post("/getownerinfo",{ownerid:oid,contractid:cid,additional:ps},function(data){
+                    console.log("load data success.");
+                    $(".modal-content").html(data);
+                    $("#div"+index+" .checkowner").click();
+                });
+}
 
+function cancelcontract(){
+    console.log("cancelcontract()...");
+    var cid = $("#exampleModal .contractid").text();
+    $.post("/cancelcontract",{contractid:cid},function(data){
+                    alert("取消订单成功！");
+                });
+}
 
+function confirmcontract(){
+    console.log("cancelcontract()...");
+    var cid = $("#exampleModal .contractid").text();
+    $.post("/customerconfirmcontract",{contractid:cid},function(data){
+                    $("#exampleModal .close").click();
+                    alert("租房成功，可在成交合同里查看详细信息");
+                });
+}
 
-
-
-
-
-
-
+function view(index){
+    console.log("view()...");
+    var oid = $("#div"+index+" .ownerid").text();
+    var cid = $("#div"+index+" .contractid").text();
+    var ps = $("#div"+index+" .additional").text();
+    var hname = $("#div"+index+" .name").text();
+    var hdes = $("#div"+index+" .description").text();
+    var haddr = $("#div"+index+" .address").text();
+    var uname = $(".username").text();
+    var uid = $(".userid").text();
+    var pp = $("#div"+index+" .price").text();
+    console.log(uname+":"+uid+":"+hname+":"+hdes+":"+haddr+":"+ps+":"+oid);
+    $.post("/viewcontract",{username:uname,userid:uid,housename:hname,housedescription:hdes,houseaddress:haddr,additional:ps,ownerid:oid,price:pp},function(data){
+                    console.log("load data success.");
+                    $(".modal-content").html(data);
+                    $("#div"+index+" .checkcontract").click();
+                });
+}
 
 
 
