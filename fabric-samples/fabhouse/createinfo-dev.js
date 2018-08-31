@@ -66,7 +66,7 @@ var tx_id = null;
 				chaincodeId: 'fabhouse',
 				fcn: 'createInfo',
 				//args: args,
-				args:['2001', '雅典家园','2室1厅0卫15㎡', '后湖','1200', '2','2','1','0003'],
+				args:['2003', '书院观邸','2室1厅0卫15㎡', '后湖','1200', '2','2','1','0003'],
                 //args:['0','1','2','3','4','5','6'],
 				chainId: 'mychannel',
 				txId: tx_id

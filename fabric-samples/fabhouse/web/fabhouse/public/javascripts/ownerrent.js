@@ -28,6 +28,7 @@ function getContract(index){
     console.log("get contract()...");
     var customerid = $(".userid").text();
     console.log(customerid);
+    console.log("liuqitesthere");
     $("#title span").removeClass("active");
     $("#title span:eq("+index+")").addClass("active");
     switch(index){

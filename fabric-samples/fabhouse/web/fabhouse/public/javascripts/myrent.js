@@ -1,5 +1,6 @@
 window.onload=function(){
-            $.post("allcontract",{},function(data){
+            var customerid = $(".userid").text();
+            $.post("/allcontract",{customerid:customerid},function(data){
                         $("#mycontent").html(data);
             });
 };
@@ -32,7 +33,7 @@ function torent(){
     $.StandardPost("/rent",{"name":name,"idcard":idcard});
 }
 
-function getContract(index){
+function getCustomerContract(index){
     console.log("get contract()...");
     var customerid = $(".userid").text();
     console.log(customerid);
@@ -40,6 +41,7 @@ function getContract(index){
     $("#title span:eq("+index+")").addClass("active");
     switch(index){
         case 0:
+            console.log("liuqitestallcontract");
             $.post("/allcontract",{customerid:customerid},function(data){
                         $("#mycontent").html(data);
                         });
