@@ -1,5 +1,6 @@
 window.onload=function(){
-            $.post("allcontract",{},function(data){
+            var ownerid = $(".userid").text();
+            $.post("allcontract-owner",{ownerid:ownerid},function(data){
                         $("#ownercontent").html(data);
             });
 };
@@ -43,7 +44,7 @@ function getContract(index){
                         });
             break;
         case 2:
-            $.post("/confirmownercontract",{customerid:customerid},function(data){
+            $.post("/confirmcontract-owner",{customerid:customerid},function(data){
                         $("#ownercontent").html(data);
                         });
             break;
@@ -76,13 +77,57 @@ function ownerconfirm(){
             alert("确定处理！");
 }
 
+function ownercheck(index){
+    var cuid = $("#div"+index+" .customerid").text();
+    var owid = $("#div"+index+" .ownerid").text();
+    var coid = $("#div"+index+" .contractid").text();
+ //   var ps = $("#div"+index+" .additional").text();
+    console.log("The customerid is :"+cuid+" ,the contractid is :"+coid);
+    $.post("/getcustomerinfo",{customerid:cuid,contractid:coid},function(data){
+                    console.log("load data success.");
+                    $(".modal-content").html(data);
+                    $("#div"+index+" .checkowner").click();
+                });
+}
+
+
+function cancelcontract(){
+    console.log("cancelcontract()...");
+    var cid = $("#exampleModal .contractid").text();
+    $.post("/cancelcontract",{contractid:cid},function(data){
+                    alert("取消订单成功！");
+                });
+}
+
+function ownerconfirmcontract(){
+    console.log("confirmcontract()...");
+    var cid = $("#exampleModal .contractid").text();
+    $.post("/ownerconfirmcontract",{contractid:cid},function(data){
+                    $("#exampleModal .close").click();
+                    alert("处理订单成功！");
+                });
+}
 
 
 
-
-
-
-
+function ownerview(index){
+    console.log("view()...");
+    var oid = $("#div"+index+" .ownerid").text();
+    var cid = $("#div"+index+" .contractid").text();
+    var ps = $("#div"+index+" .additional").text();
+    var hname = $("#div"+index+" .name").text();
+    var hdes = $("#div"+index+" .description").text();
+    var haddr = $("#div"+index+" .address").text();
+    var uname = $(".username").text();
+    var uid = $(".userid").text();
+    var pp = $("#div"+index+" .price").text();
+    console.log(uname+":"+uid+":"+hname+":"+hdes+":"+haddr+":"+ps+":"+oid);
+    $.post("/viewcontract",{username:uname,userid:uid,housename:hname,housedescription:hdes,houseaddress:haddr,additional:ps,ownerid:oid,price:pp},function(data){
+                    console.log("load data success.");
+                    $(".modal-content").html(data);
+                    $("#div"+index+" .checkcontract").click();
+                });
+}
 
 
 

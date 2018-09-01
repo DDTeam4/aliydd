@@ -6,7 +6,7 @@ append styles
 append scripts
     script(src='/javascripts/jquery.js', type='text/javascript')
     
-    script(src='/javascripts/myrent.js', type='text/javascript')
+    script(src='/javascripts/ownerrent.js', type='text/javascript')
     
 
 block content
@@ -27,7 +27,5 @@ block content
                     div.price.center=item.Record.price
                 li.listatus.lidetail
                     div.status.center 待确认
-                li.lioperator.lidetail
-                    span.checkowner(data-toggle="modal" data-target="#exampleModal")
-                    div.link.center.check(onclick="check("+index+")") 查看附加信息
+             
 

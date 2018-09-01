@@ -2,15 +2,13 @@ var express = require('express');
 var router = express.Router();
 
 router.post('/', function(req, res, next) {
-    var username = req.body.username;
-    var userid = req.body.userid;
-    var housename = req.body.housename;
-    var housedescription = req.body.housedescription;
-    var houseaddress = req.body.houseaddress;
-    var additional = req.body.additional;
-    var ownerid = req.body.ownerid;
-    var price = req.body.price;
-    console.log(username+":"+userid+":"+housename+":"+housedescription+":"+houseaddress+":"+additional+":"+ownerid);
+    var customerid = req.body.customerid;
+    var contractid = req.body.contractid;
+   // var additional = req.body.additional;
+    var result;
+   // console.log("ownerid:"+ownerid+"contractid: "+contractid+"additional: "+additional);
+    console.log("customerid:"+customerid);
+    console.log("contractid:"+contractid);
 
     var Fabric_Client = require('fabric-client');
     var path = require('path');
@@ -54,11 +52,15 @@ router.post('/', function(req, res, next) {
                     throw new Error('Failed to get user1.... run registerUser.js');
                 }
 
+                //modified by ydd at 201808
+                // queryPerson chaincode function - requires 1 argument, ex: args: ['ID'],
+                // queryAllPersons chaincode function - requires no arguments , ex: args: [''],
 
                 const request = {
+                    //targets : --- letting this default to the peers assigned to the channel
                     chaincodeId: 'fabhouse',
                     fcn: 'queryPerson',
-                    args: [ownerid]
+                    args: [customerid]
 
                 };
 
@@ -78,14 +80,16 @@ router.post('/', function(req, res, next) {
                             res.status(404).json({error:"no such result"}); 
                         }
                         else{
-                            result = JSON.parse(str);
-                            res.render('viewcontract', {result:result,username:username,userid:userid,housename:housename,housedescription:housedescription,houseaddress:houseaddress,additional:additional,ownerid:ownerid,price:price});
+                            result = JSON.parse(str); 
+                            console.log("Redirect to customerinfo .....");
+                             console.log("contractid:"+contractid);
+                            res.render('customerinfo', {result:result,contractid:contractid}); 
                         }
                     }
                 } else {
                     console.log("No payloads were returned from query");
                 }
-              //  resolve(query_responses[0].toString());
+               // resolve(query_responses[0].toString());
             }).catch((err) => {
                 console.error('Failed to query successfully :: ' + err);
             });

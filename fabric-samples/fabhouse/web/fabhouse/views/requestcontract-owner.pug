@@ -13,6 +13,7 @@ block content
     each item,index in result
         div.rentitem(id="div"+index)
             span.contractid(style="display:none")= item.Record.contractid
+            span.customerid(style="display:none")= item.Record.customerid
             ul.ulitem
                 li.lihouse.lidetail
                     div.divhouse
@@ -26,4 +27,5 @@ block content
                 li.listatus.lidetail
                     div.status.center 申请中
                 li.lioperator.lidetail
-                    div.link.center(onclick="ownerconfirm()") 处理
+                        span.checkowner(data-toggle="modal" data-target="#exampleModal")
+                        div.link.center.check(onclick="ownercheck("+index+")") 处理 

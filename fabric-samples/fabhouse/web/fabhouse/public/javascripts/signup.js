@@ -42,57 +42,6 @@ function signin(){
     console.log("The idcard is :"+idcard);
    
     $("#loginform").submit();
-
-    /* old version--- use ajax.post to post data to the back end, there are some problem in redirecting to a new page. 
-    if(type=='customer'){
-        console.log('to /customer'); 
-
-        $.post('/queryoneService',{'idcard':idcard,'password':password, 'type':type},
-               function(data){
-                          console.log('post success');
-                          $("body").html(data);
-               }
-       ).fail(function(jqXHR,textStatus,errorThrown){
-                   console.log("error");
-                   alert(jqXHR.responseText);
-       });
-
-    }
-    
-    else {
-         $.post('/queryoneService',{'idcard':idcard,'password':password, 'type':type},
-                function(data){
-           // $.get('/owner');
-//           window.location.href="/owner"; 
-                          console.log('post success');
-                          $("body").html(data);
-               }
-       ).fail(function(jqXHR,textStatus,errorThrown){
-                   console.log("error");
-                   alert(jqXHR.responseText);
-            });
-       
-    }
-    */
-    /* test version--- use ajax to post a form data to the backend,there are
-    if(type=='customer'){
-        $.ajax({
-            type:'post',
-            url:'queryoneService',
-            data:$("#loginform").serialize(),
-            dataType:'json',
-            success:function(data){
-                          console.log('post success');
-                //          $("body").html(data);
-                    },
-            error:function(jqXHR,textStatus,errorThrown){
-                   console.log("error"+textStatus);
-                   alert(jqXHR.responseText);
-                    } 
-        }); 
-    }
-    */
-
 }
 
 

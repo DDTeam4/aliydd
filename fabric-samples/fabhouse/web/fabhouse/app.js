@@ -44,7 +44,10 @@ var createInfoServiceRouter = require('./routes/service/createinfo');
 var createContract = require('./routes/service/createcontract');
 var cancelContract = require('./routes/service/cancelcontract');
 var getOwnerInfo = require('./routes/service/getownerinfo');
+var getCustomerInfo = require('./routes/service/getcustomerinfo');
 var customerConfirmContract = require('./routes/service/customerconfirmcontract');
+var ownerConfirmContract = require('./routes/service/ownerconfirmcontract');
+var addContractAdditionalByIdService = require('./routes/service/addcontractadditionalbyid');
 
 var app = express();
 
@@ -91,14 +94,17 @@ app.use('/requestcontract',queryRequestContractRouter);
 app.use('/requestcontract-owner',queryRequestContractOwnerRouter);
 app.use('/confirmcontract',queryConfirmContractRouter);
 app.use('/finishcontract',queryFinishContractRouter);
-app.use('/confirmownercontract',queryConfirmOwnerContractRouter);
+app.use('/confirmcontract-owner',queryConfirmOwnerContractRouter);
 app.use('/finishownercontract',queryFinishOwnerContractRouter);
 
 app.use('/createInfoService',createInfoServiceRouter);
 app.use('/createcontract',createContract);
 app.use('/cancelcontract',cancelContract);
 app.use('/getownerinfo',getOwnerInfo);
+app.use('/getcustomerinfo',getCustomerInfo);
 app.use('/customerconfirmcontract',customerConfirmContract);
+app.use('/ownerconfirmcontract',ownerConfirmContract);
+app.use('/addContractAdditionalByIdService',addContractAdditionalByIdService);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
