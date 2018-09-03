@@ -41,13 +41,13 @@ var tx_id = null;
 			fabric_client.setCryptoSuite(crypto_suite);
 
 			// get the enrolled user from persistence, this user will sign all requests
-			return fabric_client.getUserContext('user1', true);
+			return fabric_client.getUserContext('user2', true);
 		}).then((user_from_store) => {
 			if (user_from_store && user_from_store.isEnrolled()) {
-				console.log('Successfully loaded user1 from persistence');
+				console.log('Successfully loaded user2 from persistence');
 				member_user = user_from_store;
 			} else {
-				throw new Error('Failed to get user1.... run registerUser.js');
+				throw new Error('Failed to get user2.... run registerUser.js');
 			}
 
 			//modified by ydd at 201808

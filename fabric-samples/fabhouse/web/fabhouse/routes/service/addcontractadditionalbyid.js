@@ -1,12 +1,11 @@
-'use strict';
-/*
-* Copyright IBM Corp All Rights Reserved
-*
-* SPDX-License-Identifier: Apache-2.0
-*/
-/*
- * Chaincode Invoke
- */
+var express = require('express')
+var router = express.Router();
+
+router.post('/',function(req,res,next){
+  var additional = req.body.additional;
+  var contractid = req.query.contractid;
+ // $(".username").text();
+  console.log("The additional is :"+additional+" , the contractid is :"+contractid);
 
 var Fabric_Client = require('fabric-client');
 var path = require('path');
@@ -29,6 +28,8 @@ var store_path = path.join(__dirname, 'hfc-key-store');
 console.log('Store path:' + store_path);
 var tx_id = null;
 
+//exports.changeHouse = function (args = ['1001', '100', 'rented', 'Aaravb', 'Brad']) {
+//	return new Promise(function (resolve) {
 		// create the key value store as defined in the fabric-client/config/default.json 'key-value-store' setting
 		Fabric_Client.newDefaultKeyValueStore({
 			path: store_path
@@ -43,13 +44,13 @@ var tx_id = null;
 			fabric_client.setCryptoSuite(crypto_suite);
 
 			// get the enrolled user from persistence, this user will sign all requests
-			return fabric_client.getUserContext('user2', true);
+			return fabric_client.getUserContext('user1', true);
 		}).then((user_from_store) => {
 			if (user_from_store && user_from_store.isEnrolled()) {
-				console.log('Successfully loaded user2 from persistence');
+				console.log('Successfully loaded user1 from persistence');
 				member_user = user_from_store;
 			} else {
-				throw new Error('Failed to get user2.... run registerUser.js');
+				throw new Error('Failed to get user1.... run registerUser.js');
 			}
 
 			// get a transaction id object based on the current user assigned to fabric client
@@ -58,16 +59,13 @@ var tx_id = null;
 
 
 			//modified by ydd at 201808
-			// createPerson chaincode function - requires 5 args, ex: args: ['0000', 'Honda', '13467899876', 'H', '10'],
-			// changePerson chaincode function - requires 5 args , ex: args: ['0000', 'Honda', '14467899876', 'H', '10'],
 			// must send the proposal to endorsing peers
 			var request = {
 				//targets: let default to the peer assigned to the client
 				chaincodeId: 'fabhouse',
-				fcn: 'createInfo',
-				//args: args,
-				args:['2003', '书院观邸','2室1厅0卫15㎡', '后湖','1200', '2','2','1','0003'],
-                //args:['0','1','2','3','4','5','6'],
+				fcn: 'addContractAdditionalById',
+				//args: ['3001', '水电费自理，电费1元1度，水费1元1吨'],
+				args: [contractid, additional],
 				chainId: 'mychannel',
 				txId: tx_id
 			};
@@ -84,7 +82,6 @@ var tx_id = null;
 				console.log('Transaction proposal was good');
 			} else {
 				console.error('Transaction proposal was bad');
-                console.error('liuqi test here');
 			}
 			if (isProposalGood) {
 				console.log(util.format(
@@ -166,3 +163,7 @@ var tx_id = null;
 		}).catch((err) => {
 			console.error('Failed to invoke successfully :: ' + err);
 		});
+	//res.send('附加消息添加成功！');
+});
+module.exports = router;
+

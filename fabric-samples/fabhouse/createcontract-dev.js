@@ -64,9 +64,9 @@ var tx_id = null;
 			var request = {
 				//targets: let default to the peer assigned to the client
 				chaincodeId: 'fabhouse',
-				fcn: 'createInfo',
+				fcn: 'createContract',
 				//args: args,
-				args:['2003', '书院观邸','2室1厅0卫15㎡', '后湖','1200', '2','2','1','0003'],
+				args:['3002', '整租塔子湖锦绣家园幽兰苑1室0厅0卫','1室0厅0卫10㎡', '后湖 塔子湖锦绣家园幽兰苑','1001', '1003','3','1200','2018-08-28',''],
                 //args:['0','1','2','3','4','5','6'],
 				chainId: 'mychannel',
 				txId: tx_id

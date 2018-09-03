@@ -57,9 +57,8 @@ var tx_id = null;
 			const request = {
 				//targets : --- letting this default to the peers assigned to the channel
 				chaincodeId: 'fabhouse',
-				fcn: 'queryPerson',
-				args: ['0001']
-
+				fcn: 'queryAllContracts',
+				args: ['']
 			};
 
 			// send the query proposal to the peer

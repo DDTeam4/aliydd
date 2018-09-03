@@ -1,0 +1,216 @@
+nav{
+    padding: 20px 573px !important;
+}
+
+.navbar-brand{
+    font-weight: 500 !important;
+    font-size: 24px !important;
+}
+
+.container{
+    margin-top: 100px;
+}
+
+.welcome{
+    margin-left:290px !important;
+    font-size: 13px !important;
+    font-color: gray !important;
+    font-weight: lighter !important;
+}
+
+.myrent{
+    position: relative !important;
+    left: -30px !important;
+    font-size: 13px !important;
+}
+
+.heading{
+    color: #999999;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 0 15px;
+}
+
+#title .active{
+    color: #333333;
+}
+
+#title{
+    text-align: left;
+    margin-left: 200px;
+    margin-right: 200px;
+    border-bottom: 1px solid #e1e1e1;
+    padding-bottom: 20px;
+    padding-top: 40px;
+}
+
+.borderr{
+    border-right: 1px solid #e1e1e1;
+}
+
+#tabhead{
+    margin-left: 200px;
+    margin-right: 200px;
+    padding: 20px;
+    border-bottom: 1px solid #e1e1e1;
+}
+
+.tabh{
+    font-size: 14px;
+    font-weight: bold;
+    vertical-align: center;
+    line-height: 1;
+}
+
+.long{
+    padding-right:150px;
+}
+
+.normal{
+    padding-left:30px;
+    padding-right:30px;
+}
+
+#mycontent{
+    margin-left: 200px;
+    margin-right: 200px;
+}
+
+.ulitem{
+    padding: 0;
+    margin: 0;
+    list-style:none;
+}
+
+.lidetail{
+    display: inline-block;
+    height: 80px;
+    vertical-align: middle;
+}
+
+.center{
+    line-height:8;
+}
+
+.rentitem{
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e1e1e1;
+}
+
+.name{
+    font-size: 16px;
+    color: #000033;
+    padding: 5px;
+}
+
+.description{
+    font-size: 12px;
+    color: #999999;
+    padding: 5px;
+}
+
+.address{
+    font-size: 12px;
+    color: #999999;
+    padding: 5px;
+}
+
+.date{
+    font-size: 12px;
+}
+
+.price{
+    font-size: 12px;
+    color: #e4393c;
+}
+
+.status{
+    font-size: 12px;
+}
+
+.lioperator{
+    font-size: 12px;
+    cursor: pointer;
+    text-decoration: underline;
+    color: blue;
+}
+
+.lihouse{
+    width:260px;
+}
+
+.lidate{
+    width:130px;
+}
+
+.liprice{
+    width:110px;
+}
+
+.listatus{
+    width:90px;
+}
+
+.ownerinfo{
+    padding-bottom:20px;
+}
+
+.mhead{
+    font-size: 18px;
+    color: #EB5043;
+}
+
+.mbody{
+    border: 1px solid #e1e1e1;
+}
+
+.key{
+    color: #999999;
+    width: 120px;
+    display: inline-block;
+    padding: 10px;
+    padding-right: 30px;
+}
+
+.pscontent{
+    padding:10px;
+}
+
+.chead{
+    text-align: center;
+    font-size: 20px;
+    padding-bottom: 20px;
+    font-weight: bold;
+}
+
+.cinfo{
+    font-weight: bold;
+    text-decoration: underline;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.cstate{
+    font-weight: lighter;
+}
+
+.cterm{
+    padding: 10px;
+    padding-left: 0px;
+    font-size: 17px;
+}
+
+.ctime{
+    text-align: right;
+    padding: 20px;
+}
+
+
+
+
+
+
+
+
+
+

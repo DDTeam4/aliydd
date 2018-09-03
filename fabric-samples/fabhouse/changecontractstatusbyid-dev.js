@@ -29,6 +29,8 @@ var store_path = path.join(__dirname, 'hfc-key-store');
 console.log('Store path:' + store_path);
 var tx_id = null;
 
+//exports.changeHouse = function (args = ['1001', '100', 'rented', 'Aaravb', 'Brad']) {
+//	return new Promise(function (resolve) {
 		// create the key value store as defined in the fabric-client/config/default.json 'key-value-store' setting
 		Fabric_Client.newDefaultKeyValueStore({
 			path: store_path
@@ -64,10 +66,10 @@ var tx_id = null;
 			var request = {
 				//targets: let default to the peer assigned to the client
 				chaincodeId: 'fabhouse',
-				fcn: 'createInfo',
-				//args: args,
-				args:['2003', '书院观邸','2室1厅0卫15㎡', '后湖','1200', '2','2','1','0003'],
-                //args:['0','1','2','3','4','5','6'],
+				fcn: 'changeContractStatusById',
+				//args: ['1001', '100', 'unrent', 'Amy', 'Amy'],
+
+				args: ['3001', '2'],
 				chainId: 'mychannel',
 				txId: tx_id
 			};
@@ -84,7 +86,6 @@ var tx_id = null;
 				console.log('Transaction proposal was good');
 			} else {
 				console.error('Transaction proposal was bad');
-                console.error('liuqi test here');
 			}
 			if (isProposalGood) {
 				console.log(util.format(
@@ -166,3 +167,5 @@ var tx_id = null;
 		}).catch((err) => {
 			console.error('Failed to invoke successfully :: ' + err);
 		});
+	//})
+//};
