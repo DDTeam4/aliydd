@@ -24,6 +24,7 @@ services:
       - CORE_PEER_ADDRESS=peer0.org3.example.com:7051
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org3.example.com:7051
       - CORE_PEER_LOCALMSPID=Org3MSP
+      - GODEBUG=netdns=go
     volumes:
         - /var/run/:/host/var/run/
         - ./org3-artifacts/crypto-config/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/msp:/etc/hyperledger/fabric/msp
@@ -46,6 +47,7 @@ services:
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.org3.example.com:7051
       - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org3.example.com:7051
       - CORE_PEER_LOCALMSPID=Org3MSP
+      - GODEBUG=netdns=go
     volumes:
         - /var/run/:/host/var/run/
         - ./org3-artifacts/crypto-config/peerOrganizations/org3.example.com/peers/peer1.org3.example.com/msp:/etc/hyperledger/fabric/msp
@@ -72,6 +74,7 @@ services:
       - CORE_PEER_ADDRESS=peer0.org3.example.com:7051
       - CORE_PEER_LOCALMSPID=Org3MSP
       - CORE_PEER_TLS_ENABLED=true
+      - GODEBUG=netdns=go
       - CORE_PEER_TLS_CERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/tls/server.crt
       - CORE_PEER_TLS_KEY_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/tls/server.key
       - CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/tls/ca.crt
