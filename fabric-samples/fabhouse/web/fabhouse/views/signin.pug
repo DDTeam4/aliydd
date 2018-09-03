@@ -25,12 +25,12 @@ block body
                                                                         a(href="#") 关于
  
         .container
-                div.form-signin
-                        h2.form-signin-heading 用户登录
+                div.form-signin(style="margin-top:150px")
+                        h2.form-signin-heading(style="font-size: 18px;font-weight: lighter;") 用户登录
                         form#loginform(action='/queryoneService',method='post')
-                                input#inputIDCard(type='text', placeholder='身份证号码:范围：0000-0999', name="idcard")
-                                input#inputPassword(type='password',placeholder='密码', name="password")
-                                div.form-check
+                                input#inputIDCard.signininput(type='text', placeholder='身份证号码:范围：0000-0999', name="idcard")
+                                input#inputPassword.signininput(type='password',placeholder='密码', name="password")
+                                div.form-check(style="margin-bottom:5px;")
                                         input.form-check-input(type='radio', name='type', id='customer', value='customer',checked='', style="width:35px;")
                                         label.form-check-label(for='type') 我要租房 
                                         input.form-check-input(type='radio', name='type', id='owner', value='owner' style="width:35px;")

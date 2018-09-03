@@ -86,3 +86,8 @@ function queryhouse(){
        */
     $.get('/queryhouseService');
 }
+
+function tologin(){
+   $.get("/signin",{title:"fabhouse"});
+
+}

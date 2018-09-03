@@ -25,17 +25,17 @@ block body
                                                                         a(href="#") 关于
  
         .container
-                div.form-signin
-                        h2.form-signin-heading 用户注册
+                div.form-signin(style="margin-top:150px")
+                        h2.form-signin-heading(style="font-size:18px;font-weight:lighter") 用户注册
                         form#signupform(action='/signupService', method='post')
-                                input#inputIDCard(type='text',placeholder='身份证号码:范围：0000-0999',name='idcard')
-                                input#inputPassword(type='password',placeholder='密码',name='password')
-                                input#inputName(type='text', placeholder='姓名',name='name')
-                                input#inputPhone(type='text', placeholder='电话号码',name='phone')
-                                input#inputCompany(type='text', placeholder='公司',name='company')
-                                input#inputCredit(type='text', placeholder='信用分',name='credit')
+                                input#inputIDCard.signupinput(type='text',placeholder='身份证号码:范围：0000-0999',name='idcard')
+                                input#inputPassword.signupinput(type='password',placeholder='密码',name='password')
+                                input#inputName.signupinput(type='text', placeholder='姓名',name='name')
+                                input#inputPhone.signupinput(type='text', placeholder='电话号码',name='phone')
+                                input#inputCompany.signupinput(type='text', placeholder='公司',name='company')
+                                input#inputCredit.signupinput(type='text', placeholder='信用分',name='credit')
                                 
-                                div.form-check
+                                div.form-check(style="margin-bottom:10px")
                                         input.form-check-input(type='radio', name='type', id='customer', value='customer',checked='', style="width:35px;")
                                         label.form-check-label(for='type') 我要租房 
                                         input.form-check-input(type='radio', name='type', id='owner', value='owner' style="width:35px;")

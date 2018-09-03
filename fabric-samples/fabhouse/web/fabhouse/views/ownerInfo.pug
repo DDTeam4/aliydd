@@ -9,10 +9,10 @@ append styles
 
 
 block body
-        span.username(style="display:none") #{result.name}
-        span.userid(style="display:none") #{result.idcard}
-        -var name=result.name
-        -var idcard=result.idcard
+        span.username(style="display:none") #{name}
+        span.userid(style="display:none") #{idcard}
+        //-var name=result.name
+        //-var idcard=result.idcard
         .site-wrapper
                 .site-wrapper-inner
                         .cover-container
@@ -31,18 +31,18 @@ block body
                                                                         a(href="#") 关于
  
         .container
-                div.form-signin
-                        h2.form-signin-heading 欢迎您， #{result.name}
+                div.form-signin(style="margin-top:150px")
+                        h2.form-signin-heading(style="font-size:18px;font-weight:lighter") 房屋注册
                         form#signupform(action='/signuphouseService', method='post')
-                                input#inputID(type='text',placeholder='房屋号码:范围：1000-1999',name='id')
-                                input#inputArea(type='text', placeholder='面积',name='area')
-                                input#inputStatus(type='text', placeholder='状态',name='status')
-                                input#inputOwner(type='text', placeholder='持有者',name='owner')
-                                input#inputUser(type='text', placeholder='使用者',name='user')
+                                input#inputID.signupinput(type='text',placeholder='房屋号码:范围：1000-1999',name='id')
+                                input#inputArea.signupinput(type='text', placeholder='面积',name='area')
+                                input#inputStatus.signupinput(type='text', placeholder='状态',name='status')
+                                input#inputOwner.signupinput(type='text', placeholder='持有者',name='owner')
+                                input#inputUser.signupinput(type='text', placeholder='使用者',name='user')
                                         
                                 button.btn.btn-lg.btn-primary.btn-block(type='submit') 注册房屋
-                        -var name=result.name
-                        form#queryhouseform(action='/queryhousebyownerService?name='+name, method='post')
+                        //-var name=result.name
+                        //form#queryhouseform(action='/queryhousebyownerService?name='+name, method='post')
                                 button.btn.btn-lg.btn-primary.btn-block(type='submit') 查询房屋
                        
-                        button.btn.btn-lg.btn-primary.btn-block(onclick="toownerrent()") 查看租房合约
+                        //button.btn.btn-lg.btn-primary.btn-block(onclick="toownerrent()") 查看租房合约

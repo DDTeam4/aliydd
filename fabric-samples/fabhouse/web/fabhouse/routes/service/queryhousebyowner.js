@@ -11,7 +11,7 @@ var router = express.Router();
  */
 
 router.post('/',function(req,res,next){
-var name=req.query.name;
+var name=req.body.name;
 
 console.log("The received req is :",req.query);
 console.log("The received name is :",name);

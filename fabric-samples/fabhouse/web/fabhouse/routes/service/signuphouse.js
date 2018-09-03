@@ -165,6 +165,7 @@ Fabric_Client.newDefaultKeyValueStore({ path: store_path
 	console.error('Failed to invoke successfully :: ' + err);
 });
   res.send('sign up successful!');
+  //res.render('successhouse',{title:'fabhouse'});
 });
 
 module.exports = router;

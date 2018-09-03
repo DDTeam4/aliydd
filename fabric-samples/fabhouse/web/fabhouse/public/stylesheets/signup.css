@@ -168,3 +168,13 @@ input {
     width: 700px;
   }
 }
+
+.signininput{
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.signupinput{
+    padding: 5px;
+    margin-bottom: 5px;
+}

@@ -93,10 +93,10 @@ Fabric_Client.newDefaultKeyValueStore({ path: store_path
 
         // liuqi add @ 0824 --- redirect to user page by user types.
         if(type=="customer"){
-            res.render("customer", {title: 'customer'});
+            res.render("success", {title: 'customer'});
         }
         else{
-            res.render("owner", {title: 'owner'});
+            res.render("success", {title: 'owner'});
         }
 
 		// build up the request for the orderer to have the transaction committed
