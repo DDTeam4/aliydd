@@ -26,7 +26,7 @@ block body
                 div.form-signin
                         h2.form-signin-heading 房屋注册
                         form#signupform(action='/signuphouseService', method='post')
-                                input#inputID(type='text',placeholder='房屋号码',name='id')
+                                input#inputID(type='text',placeholder='房屋号码:范围：1000-1999',name='id')
                                 input#inputArea(type='text', placeholder='面积',name='area')
                                 input#inputStatus(type='text', placeholder='状态',name='status')
                                 input#inputOwner(type='text', placeholder='持有者',name='owner')

@@ -46,13 +46,13 @@ block content
                             label(for='rent' style='font-size:16px') 房主信用分： 
                             input.form-control#credit(type='text', placeholder="eg. 750",required='true')
                             label(for='rent' style='font-size:16px') 区域： 
-                            input.form-control#district(type='text', placeholder="江岸区/江汉区/桥口区/汉阳区/武昌区/青山区/洪山区",required='true')
+                            input.form-control#district(type='text', placeholder="取值1～7，对应(江岸区/江汉区/桥口区/汉阳区/武昌区/青山区/洪山区)",required='true')
                             label(for='rent' style='font-size:16px') 持续时间： 
-                            input.form-control#duration(type='text', placeholder="1年以上/6-12个月/3-6个月/1-3个月/1个月以内",required='true')
+                            input.form-control#duration(type='text', placeholder="取值1～5，对应(1年以上/6-12个月/3-6个月/1-3个月/1个月以内)",required='true')
                             label(for='rent' style='font-size:16px') 性别： 
-                            input.form-control#gender(type='text', placeholder="男/女",required='true')
+                            input.form-control#gender(type='text', placeholder="取值1～2，对应(男/女)",required='true')
                             label(for='rent' style='font-size:16px') 房主编号： 
-                            input.form-control#ownerid(type='text', placeholder="房主ID",required='true')
+                            input.form-control#ownerid(type='text', placeholder="房主ID,范围： 0000-0999",required='true')
                             small.form-text.text-muted 请按照示例规范如实填写，否则系统无法为您提交出租申请
                 .modal-footer
                     button.btn.btn-secondary(type='button', data-dismiss='modal') 取消出租
