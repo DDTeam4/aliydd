@@ -57,11 +57,10 @@ Fabric_Client.newDefaultKeyValueStore({ path: store_path
 	tx_id = fabric_client.newTransactionID();
 	console.log("Assigning transaction_id: ", tx_id._transaction_id);
 
+    
+    res.render("successhouse", {title: 'signuphouse'});
 
-        //modified by ydd at 201808
-    // createPerson chaincode function - requires 5 args, ex: args: ['0000', 'Honda', '13467899876', 'H', '10'],
-	// changePerson chaincode function - requires 5 args , ex: args: ['0000', 'Honda', '14467899876', 'H', '10'],
-	// must send the proposal to endorsing peers
+        // must send the proposal to endorsing peers
 	var request = {
 		//targets: let default to the peer assigned to the client
 		chaincodeId: 'fabhouse',
@@ -89,6 +88,7 @@ Fabric_Client.newDefaultKeyValueStore({ path: store_path
 			'Successfully sent Proposal and received ProposalResponse: Status - %s, message - "%s"',
 			proposalResponses[0].response.status, proposalResponses[0].response.message));
 
+        res.render("successhouse", {title: 'signuphouse'});
 
 		// build up the request for the orderer to have the transaction committed
 		var request = {
@@ -164,7 +164,7 @@ Fabric_Client.newDefaultKeyValueStore({ path: store_path
 }).catch((err) => {
 	console.error('Failed to invoke successfully :: ' + err);
 });
-  res.send('sign up successful!');
+  //res.send('sign up successful!');
   //res.render('successhouse',{title:'fabhouse'});
 });
 
