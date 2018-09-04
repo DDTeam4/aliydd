@@ -79,7 +79,7 @@ router.post('/', function(req, res, next) {
                         }
                         else{
                             result = JSON.parse(str); 
-                            res.render('ownerinfo', {result: result,contractid:contractid,additional:additional}); 
+                            res.render('ownerInformation', {result: result,contractid:contractid,additional:additional}); 
                         }
                     }
                 } else {
