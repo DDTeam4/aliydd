@@ -77,7 +77,7 @@ Fabric_Client.newDefaultKeyValueStore({ path: store_path
                 result = JSON.parse(str);
                 var length = result.length;
                 console.log("length: "+length);
-                res.render("finishcontract",{result:result,length:length});
+                res.render("finishcontract-owner",{result:result,length:length});
             }
 		}
 	} else {

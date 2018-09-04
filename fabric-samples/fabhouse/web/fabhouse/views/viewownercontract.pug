@@ -1,0 +1,53 @@
+.modal-header
+    h5#exampleModalLabel.modal-title 查看合同
+    button.close(type='button', data-dismiss='modal', aria-label='Close')
+      span(aria-hidden='true') ×
+.modal-body
+    div.ownerinfo
+        span(style="display:none") test
+        div.chead 房屋租赁合同
+        div.cperson
+            div.cpeople 出租方（以下简称甲方）：
+                span.cinfo=username
+                |(身份证号码：
+                span.cinfo=userid
+                |)
+            div.cpeople 承租方（以下简称乙方）：
+                span.cinfo=result.name
+                |(身份证号码：
+                span.cinfo=ownerid
+                |)
+        div.cbody
+            div.cstate 甲乙双方就下列房屋的租赁达成如下协议：
+            div.cterm 第一条 房屋基本情况 
+            div.cstate 甲方房屋
+                span.cinfo=housename
+                |（以下简称该房屋）,座落于
+                span.cinfo=houseaddress
+                | 。基本信息：
+                span.cinfo=housedescription
+                |。
+            div.cterm 第二条 房屋用途
+            div.cstate 该房屋用途为租赁住房。
+            div.cstate 除双方另有约定外，乙方不得任意改变房屋用途。
+            div.cterm 第三条 租金
+            div.cstate 该房屋月租金为
+                span.cinfo=price
+                |元人民币整。
+            div.cstate 租赁期间，如遇到国家有关政策调整，则按新政策规定调整租金标准；除此之外，甲方不得以任何理由任意调整租金。
+            div.cterm 第四条 甲方对房屋产权的承诺
+            div.cstate 甲方保证拥有房屋产权，提供相应证明。在交易时该房没有产权纠纷；交易后如有产权未清事项，由甲方承担全部责任，由此给乙方造成经济损失的，由甲方赔偿相应损失。
+            div.cterm 第五条 甲方对合同的补充条件
+            div.cstate 甲方对于租赁该房屋给乙方的补充条件为： 
+                span.cinfo=additional
+            div.cterm 第六条 本合同在履行中发生争议，由甲乙双方协商解决。协商不成时，甲乙双方可向人民法院起诉。
+            div.cterm 第七条 本合同在基于区块链技术的FabHouse平台上自动生成，不可篡改，诋毁。自生成之日起生效，甲乙各一份，具有同等效力。
+            div.ctime 30/08/2018
+                
+
+.modal-footer
+    button.btn.btn-secondary.closemodal(type='button', data-dismiss='modal') 确认
+    button.btn.btn-primary(type='button',onclick="window.print()") 导出打印
+
+                            
+

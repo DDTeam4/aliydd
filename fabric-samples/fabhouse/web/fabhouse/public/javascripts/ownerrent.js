@@ -112,7 +112,7 @@ function ownerconfirmcontract(){
 
 function ownerview(index){
     console.log("view()...");
-    var oid = $("#div"+index+" .ownerid").text();
+    var oid = $("#div"+index+" .customerid").text();
     var cid = $("#div"+index+" .contractid").text();
     var ps = $("#div"+index+" .additional").text();
     var hname = $("#div"+index+" .name").text();
@@ -122,7 +122,7 @@ function ownerview(index){
     var uid = $(".userid").text();
     var pp = $("#div"+index+" .price").text();
     console.log(uname+":"+uid+":"+hname+":"+hdes+":"+haddr+":"+ps+":"+oid);
-    $.post("/viewcontract",{username:uname,userid:uid,housename:hname,housedescription:hdes,houseaddress:haddr,additional:ps,ownerid:oid,price:pp},function(data){
+    $.post("/viewownercontract",{username:uname,userid:uid,housename:hname,housedescription:hdes,houseaddress:haddr,additional:ps,ownerid:oid,price:pp},function(data){
                     console.log("load data success.");
                     $(".modal-content").html(data);
                     $("#div"+index+" .checkcontract").click();

@@ -1,0 +1,35 @@
+extends layout
+
+append styles
+    link(rel='stylesheet', href='/stylesheets/myrent.css')
+
+append scripts
+    script(src='/javascripts/jquery.js', type='text/javascript')
+    
+    script(src='/javascripts/myrent.js', type='text/javascript')
+    script(src='/javascripts/ownerrent.js', type='text/javascript')
+
+block content
+    each item,index in result
+        div.rentitem(id="div"+index)
+            span.contractid(style="display:none")= item.Record.contractid
+            span.ownerid(style="display:none")= item.Record.ownerid
+            span.additional(style="display:none")= item.Record.additional
+            span.customerid(style="display:none")= item.Record.customerid
+            ul.ulitem
+                li.lihouse.lidetail
+                    div.divhouse
+                        div.name=item.Record.housename
+                        div.description=item.Record.housedescription
+                        div.address=item.Record.houseaddress 
+                li.lidate.lidetail
+                    div.date.center=item.Record.time
+                li.liprice.lidetail
+                    div.price.center=item.Record.price
+                li.listatus.lidetail
+                    div.status.center 已成交
+                li.lioperator.lidetail
+                    span.checkcontract(data-toggle="modal" data-target="#exampleModal")
+                    div.link.center(onclick="ownerview("+index+")") 查看合约
+               
+

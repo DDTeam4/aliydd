@@ -22,6 +22,7 @@ var ownerRentRouter = require('./routes/router/ownerrent')
 var createHouseRouter = require('./routes/router/createhouse')
 
 var viewContract = require('./routes/service/viewcontract')
+var viewOwnerContract = require('./routes/service/viewcontract-owner.js')
 var signupServiceRouter = require('./routes/service/signup');
 var signuphouseServiceRouter = require('./routes/service/signuphouse');
 var signinServiceRouter = require('./routes/service/signin');
@@ -79,6 +80,7 @@ app.use('/rent',rentRouter);
 app.use('/myrent',myRentRouter);
 app.use('/ownerrent',ownerRentRouter);
 app.use('/viewcontract',viewContract);
+app.use('/viewOwnerContract',viewOwnerContract)
 app.use('/createhouse',createHouseRouter);
 
 app.use('/signupService',signupServiceRouter);
